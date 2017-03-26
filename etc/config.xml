@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <ecshipping>
+                <active>0</active>
+                <allowspecific>0</allowspecific>
+                <model>\EdmondsCommerce\Shipping\Model\Carrier\Shipping</model>
+                <name>Edmonds Commerce Shipping</name>
+                <price>1.00</price>
+                <title>Edmonds Commerce Shipping</title>
+                <type>I</type>
+                <specifiermsg>Shipping method not available</specifiermsg>
+            </ecshipping>
+        </carriers>
+    </default>
+</config>
