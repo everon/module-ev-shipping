@@ -31,6 +31,8 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      */
     public function getAllowedMethods()
     {
-        // TODO: Implement getAllowedMethods() method.
+        return [
+            'ecshipping' => $this->getConfigData('name')
+        ];
     }
 }
