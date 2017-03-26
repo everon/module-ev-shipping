@@ -1,19 +1,22 @@
 {
-"name": "edmondscommerce/m2-shipping",
-"description": "N/A",
-"require": {},
-"type": "magento2-module",
-"version": "0.0.1",
-"license": [
-"OSL-3.0",
-"AFL-3.0"
-],
-"autoload": {
-"files": [
-"registration.php"
-],
-"psr-4": {
-"EdmondsCommerce\\Shipping\\": ""
-}
-}
+    "name": "edmondscommerce/m2-shipping",
+    "description": "N/A",
+    "require": {},
+    "require-dev": {
+        "mockery/mockery": "dev-master"
+    },
+    "type": "magento2-module",
+    "version": "0.0.1",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "EdmondsCommerce\\Shipping\\": ""
+        }
+    }
 }

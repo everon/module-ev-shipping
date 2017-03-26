@@ -2,7 +2,9 @@
 
 namespace EdmondsCommerce\Shipping\Model\Upload;
 
-class CSVFileValidator
+use Exception;
+
+class ValidationException extends Exception
 {
 
 }
