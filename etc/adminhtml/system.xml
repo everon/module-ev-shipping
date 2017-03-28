@@ -18,7 +18,7 @@
 
                 <field id="rules" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="20" showInDefault="0" showInWebsite="1" showInStore="0">
                     <label>Shipping Rules</label>
-                    <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                    <backend_model>EdmondsCommerce\Shipping\Model\Config\Backend\Import</backend_model>
                     <upload_dir config="system" scope_info="1">var/ecshipping</upload_dir>
                 </field>
             </group>
