@@ -2,11 +2,17 @@
 
 namespace EdmondsCommerce\Shipping\Model\Config\Backend;
 
+use EdmondsCommerce\Shipping\Model\Import\Importer;
 use \Magento\Config\Model\Config\Backend\File;
 use Magento\Framework\Filesystem;
 
 class Import extends File
 {
+    /**
+     * @var Importer
+     */
+    private $ruleImporter;
+
     public function __construct(
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
@@ -15,34 +21,21 @@ class Import extends File
         \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory,
         \Magento\Config\Model\Config\Backend\File\RequestData\RequestDataInterface $requestData,
         Filesystem $filesystem,
-        \EdmondsCommerce\Shipping\Model\Upload\Importer $importer,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        Importer $ruleImporter,
         array $data = []
     )
     {
         parent::__construct($context, $registry, $config, $cacheTypeList, $uploaderFactory, $requestData, $filesystem, $resource, $resourceCollection, $data);
+        $this->ruleImporter = $ruleImporter;
     }
 
     public function beforeSave()
     {
-        //Validate the file before continuing
-//        $this->addValidateCallback();
+        //Attempt import
 
-        /**
-         * throw new \Magento\Framework\Exception\LocalizedException(
-        __('The file you\'re uploading exceeds the server size limit of %1 kilobytes.', $this->_maxFileSize)
-        );
-         */
 
         return parent::beforeSave();
-    }
-
-    public function afterSave()
-    {
-//        $config = $this->get
-        $csv = $this->getValue();
-        $uploadDir = $this->_getUploadDir();
-        return parent::afterSave();
     }
 }
