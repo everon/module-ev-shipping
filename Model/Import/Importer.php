@@ -15,10 +15,10 @@ class Importer
         $this->importResolver = $importResolver;
     }
 
-    public function import($data, $type)
+    public function import($data, $type, $website)
     {
         //Which importer to use
-        $importer = $this->importResolver->create($type, $data);
+        $importer = $this->importResolver->create($type, $data, $website);
 
         //Attempt validation of data
         if(!$importer->validate())
@@ -30,5 +30,6 @@ class Importer
 
         //Insert new records to database
     }
+
 
 }

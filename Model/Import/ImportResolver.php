@@ -23,7 +23,7 @@ class ImportResolver
     {
         $this->objectManager = $objectManager;
         $this->importers = [
-            'csv' => CSV::class
+            'text/csv' => CSV::class
         ];
     }
 
@@ -42,10 +42,10 @@ class ImportResolver
      * @param $data
      * @return ImporterInterface
      */
-    public function create($type, $data)
+    public function create($type, $data, $website)
     {
         $class = $this->resolve($type);
 
-        return $this->objectManager->create($class, ['data' => $data]);
+        return $this->objectManager->create($class, ['data' => $data, 'website' => $website]);
     }
 }
