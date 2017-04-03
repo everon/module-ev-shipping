@@ -34,7 +34,7 @@ class Import extends File
     public function beforeSave()
     {
         //Attempt import
-
+        $a = 1;
 
         return parent::beforeSave();
     }

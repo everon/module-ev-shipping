@@ -4,7 +4,7 @@ namespace EdmondsCommerce\Shipping\Model\Import;
 
 use EdmondsCommerce\Shipping\Api\ImporterInterface;
 use EdmondsCommerce\Shipping\Model\Import\File\CSV;
-use Magento\Framework\App\ObjectManager;
+use Magento\Framework\ObjectManager\ObjectManager;
 
 /**
  * Class ImportResolver
@@ -15,9 +15,8 @@ class ImportResolver
 {
     /** @var array */
     private $importers;
-    /**
-     * @var ObjectManager
-     */
+
+    /** @var ObjectManager */
     private $objectManager;
 
     public function __construct(ObjectManager $objectManager)
