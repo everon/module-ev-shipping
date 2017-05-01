@@ -10,9 +10,14 @@ interface RuleInterface
     public function getId();
 
     /**
+     * @return string
+     */
+    public function getName();
+
+    /**
      * @return int
      */
-    public function getStoreId();
+    public function getWebsiteId();
 
     /**
      * @return string

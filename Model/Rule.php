@@ -43,9 +43,17 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
     }
 
     /**
+     * @return string
+     */
+    public function getName()
+    {
+        // TODO: Implement getName() method.
+    }
+
+    /**
      * @return int
      */
-    public function getStoreId()
+    public function getWebsiteId()
     {
         // TODO: Implement getStoreId() method.
     }
@@ -113,4 +121,6 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
     {
         // TODO: Implement getSortOrder() method.
     }
+
+
 }
