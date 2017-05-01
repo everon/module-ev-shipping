@@ -20,6 +20,8 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      */
     public function collectRates(RateRequest $request)
     {
+        $a = 1;
+        $address = $request->getPackageWeight();
         // TODO: Implement collectRates() method.
     }
 
