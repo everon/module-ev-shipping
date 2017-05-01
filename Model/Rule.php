@@ -39,7 +39,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getId()
     {
-        // TODO: Implement getId() method.
+        return $this->getData('id');
     }
 
     /**
@@ -47,7 +47,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getName()
     {
-        // TODO: Implement getName() method.
+        return $this->getData('name');
     }
 
     /**
@@ -55,7 +55,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getWebsiteId()
     {
-        // TODO: Implement getStoreId() method.
+        return $this->getData('website_id');
     }
 
     /**
@@ -63,7 +63,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getCountry()
     {
-        // TODO: Implement getCountry() method.
+        return $this->getData('country');
     }
 
     /**
@@ -71,7 +71,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getPostCode()
     {
-        // TODO: Implement getPostCode() method.
+        return $this->getData('postcode');
     }
 
     /**
@@ -79,7 +79,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getWeightFrom()
     {
-        // TODO: Implement getWeightFrom() method.
+        return $this->getData('weight_from');
     }
 
     /**
@@ -87,7 +87,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getWeightTo()
     {
-        // TODO: Implement getWeightTo() method.
+        return $this->getData('weight_to');
     }
 
     /**
@@ -95,7 +95,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getPriceFrom()
     {
-        // TODO: Implement getPriceFrom() method.
+        return $this->getData('price_from');
     }
 
     /**
@@ -103,7 +103,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getPriceTo()
     {
-        // TODO: Implement getPriceTo() method.
+        return $this->getData('price_to');
     }
 
     /**
@@ -111,7 +111,7 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getShippingPrice()
     {
-        // TODO: Implement getShippingPrice() method.
+        return $this->getData('price');
     }
 
     /**
@@ -119,8 +119,6 @@ class Rule extends AbstractModel implements IdentityInterface, RuleInterface
      */
     public function getSortOrder()
     {
-        // TODO: Implement getSortOrder() method.
+        return $this->getData('sort_order');
     }
-
-
 }
