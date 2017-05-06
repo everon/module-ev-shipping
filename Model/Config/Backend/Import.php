@@ -2,16 +2,11 @@
 
 namespace EdmondsCommerce\Shipping\Model\Config\Backend;
 
-use EdmondsCommerce\Shipping\Model\Import\Importer;
 use \Magento\Config\Model\Config\Backend\File;
 use Magento\Framework\Filesystem;
 
 class Import extends File
 {
-    /**
-     * @var Importer
-     */
-    private $ruleImporter;
 
     public function __construct(
         \Magento\Framework\Model\Context $context,
@@ -23,12 +18,10 @@ class Import extends File
         Filesystem $filesystem,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        Importer $ruleImporter,
         array $data = []
     )
     {
         parent::__construct($context, $registry, $config, $cacheTypeList, $uploaderFactory, $requestData, $filesystem, $resource, $resourceCollection, $data);
-        $this->ruleImporter = $ruleImporter;
     }
 
     public function beforeSave()
@@ -40,7 +33,6 @@ class Import extends File
         $fileData = file_get_contents($file['tmp_name']);
         $website = $this->getScopeId();
 
-        $this->ruleImporter->import($fileData, $file['type'], $website);
 
         return parent::beforeSave();
     }

@@ -57,8 +57,6 @@ class Shipping extends AbstractCarrier implements CarrierInterface
         //Rules that match the country code first
         $ruleCollection->addFieldToFilter('country', ['eq' => $request->getDestCountryId()]);
 
-        //Rules that match the postal code
-        $ruleCollection->filterPostcode($request->getDestPostcode());
         //TODO: Handle wildcards and post code matching
 
         //Rules that match the price boundaries
