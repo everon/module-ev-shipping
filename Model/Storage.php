@@ -44,6 +44,9 @@ class Storage
         return $this->directory_list->getPath('var') . '/shipping.json';
     }
 
+    /**
+     * @return RuleCollection
+     */
     public function getRuleCollection()
     {
         //Assume that the file is located at a specific path

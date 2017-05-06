@@ -2,40 +2,43 @@
 
 namespace EdmondsCommerce\Shipping\Model\Carrier;
 
-use EdmondsCommerce\Shipping\Model\Rule;
-use EdmondsCommerce\Shipping\Model\RuleFactory;
+use EdmondsCommerce\Shipping\Model\Storage as RuleStorage;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;
+use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
+use Psr\Log\LoggerInterface;
 
 class Shipping extends AbstractCarrier implements CarrierInterface
 {
 
     protected $_code = 'ecshipping';
+
     /**
-     * @var RuleFactory
+     * @var RuleStorage
      */
-    private $ruleFactory;
+    private $ruleStorage;
 
     /**
      * Shipping constructor.
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param RuleFactory $ruleFactory
+     * @param ScopeConfigInterface $scopeConfig
+     * @param ErrorFactory $rateErrorFactory
+     * @param LoggerInterface $logger
+     * @param RuleStorage $ruleStorage
      * @param array $data
      */
     public function __construct
     (
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory,
-        \Psr\Log\LoggerInterface $logger,
-        RuleFactory $ruleFactory,
+        ScopeConfigInterface $scopeConfig,
+        ErrorFactory $rateErrorFactory,
+        LoggerInterface $logger,
+        RuleStorage $ruleStorage,
         array $data = []
     )
     {
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
-        $this->ruleFactory = $ruleFactory;
+        $this->ruleStorage = $ruleStorage;
     }
 
     /**
@@ -47,26 +50,25 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      */
     public function collectRates(RateRequest $request)
     {
-        /** @var Rule $rule */
-        $rule = $this->ruleFactory->create();
-        $ruleCollection = $rule->getCollection();
+        $ruleCollection = $this->ruleStorage->getRuleCollection();
 
         //Filter by the website
-        $ruleCollection->addFieldToFilter('website_id', ['eq' => $request->getWebsiteId()]);
+        $ruleCollection = $ruleCollection->filterWebsite($request->getWebsiteId());
 
         //Rules that match the country code first
-        $ruleCollection->addFieldToFilter('country', ['eq' => $request->getDestCountryId()]);
+        $ruleCollection = $ruleCollection->filterCountry($request->getDestCountryId());
 
         //TODO: Handle wildcards and post code matching
+        $ruleCollection = $ruleCollection->filterPostcode($request->getDestPostcode());
 
         //Rules that match the price boundaries
-        //TODO: Handle wildcards and infinity keyword (INF)
+//        $ruleCollection->filterBasketTotalPrice();
 
         //Rules that match the weight boundaries
-        //TODO: Handle wildcards and infinity keyword (INF)
+        $ruleCollection = $ruleCollection->filterWeight($request->getPackageWeight());
 
-        //Sort by sort order
-        $ruleCollection->setOrder('sort_order', $ruleCollection::SORT_ORDER_ASC);
+        //Sort by sort order and distinct on the shipping name to remove any duplicates
+        $ruleCollection = $ruleCollection->getRulesSorted();
 
         //Distinct on the shipping name to remove any duplicates
         return $ruleCollection->toArray();

@@ -1,0 +1,10 @@
+{
+    "rules": [
+        {
+            "name": "Test Courier",
+            "country": "UK",
+            "postcode": "BD17 7DB",
+            "price": 3.50
+        }
+    ]
+}
