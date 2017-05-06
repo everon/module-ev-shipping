@@ -9,6 +9,19 @@ use Magento\Framework\Model\AbstractModel;
 class Rule extends AbstractModel implements RuleInterface
 {
     /**
+     * Check that we match the postcode
+     * @param string $postcode
+     */
+    public function matchPostcode($postcode)
+    {
+        $check = trim($this->getPostCode());
+        $postcode = trim($postcode);
+
+        //UK Full match - BD17 7DB
+        if($postcode ==)
+    }
+
+    /**
      * @return int
      */
     public function getId()

@@ -58,10 +58,14 @@ class RuleCollection
     {
         $items = array_filter($this->items, function (Rule $item) use ($postcode)
         {
-            $filter = $item->getPostCode();
-
+            return $item->matchPostcode($postcode);
         });
 
         return $this->ruleCollectionFactory->create($items);
+    }
+
+    public function toArray()
+    {
+        return $this->items;
     }
 }

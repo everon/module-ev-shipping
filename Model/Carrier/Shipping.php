@@ -65,10 +65,10 @@ class Shipping extends AbstractCarrier implements CarrierInterface
 //        $ruleCollection->filterBasketTotalPrice();
 
         //Rules that match the weight boundaries
-        $ruleCollection = $ruleCollection->filterWeight($request->getPackageWeight());
+        //$ruleCollection = $ruleCollection->filterWeight($request->getPackageWeight());
 
         //Sort by sort order and distinct on the shipping name to remove any duplicates
-        $ruleCollection = $ruleCollection->getRulesSorted();
+        //$ruleCollection = $ruleCollection->getRulesSorted();
 
         //Distinct on the shipping name to remove any duplicates
         return $ruleCollection->toArray();
