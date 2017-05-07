@@ -2,7 +2,7 @@
 
 namespace EdmondsCommerce\Shipping\Api\Data;
 
-interface RuleInterface
+interface RateInterface
 {
     /**
      * @return int
@@ -25,9 +25,9 @@ interface RuleInterface
     public function getCountry();
 
     /**
-     * @return string
+     * @return string[]
      */
-    public function getPostCode();
+    public function getPostCodes();
 
     /**
      * @return float

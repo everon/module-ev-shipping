@@ -2,25 +2,15 @@
 
 namespace EdmondsCommerce\Shipping\Model;
 
-use EdmondsCommerce\Shipping\Api\Data\RuleInterface;
-use Magento\Framework\DataObject\IdentityInterface;
+use EdmondsCommerce\Shipping\Api\Data\RateInterface;
 use Magento\Framework\Model\AbstractModel;
 
-class Rule extends AbstractModel implements RuleInterface
+/**
+ * Class Rule
+ * @package EdmondsCommerce\Shipping\Model
+ */
+class Rate extends AbstractModel implements RateInterface
 {
-    /**
-     * Check that we match the postcode
-     * @param string $postcode
-     */
-    public function matchPostcode($postcode)
-    {
-        $check = trim($this->getPostCode());
-        $postcode = trim($postcode);
-
-        //UK Full match - BD17 7DB
-        if($postcode ==)
-    }
-
     /**
      * @return int
      */
@@ -54,9 +44,9 @@ class Rule extends AbstractModel implements RuleInterface
     }
 
     /**
-     * @return string
+     * @return string[]
      */
-    public function getPostCode()
+    public function getPostCodes()
     {
         return $this->getData('postcode');
     }

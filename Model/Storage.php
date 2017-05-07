@@ -45,7 +45,7 @@ class Storage
     }
 
     /**
-     * @return RuleCollection
+     * @return RateCollection
      */
     public function getRuleCollection()
     {

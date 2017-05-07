@@ -2,9 +2,9 @@
 
 namespace EdmondsCommerce\Shipping\Model;
 
-class RuleCollection
+class RateCollection
 {
-    /** @var Rule[] */
+    /** @var Rate[] */
     protected $items;
     /**
      * @var RuleCollectionFactory
@@ -13,7 +13,7 @@ class RuleCollection
 
     /**
      * RuleCollection constructor.
-     * @param Rule[] $items
+     * @param Rate[] $items
      * @param RuleCollectionFactory $ruleCollectionFactory
      */
     public function __construct(array $items, RuleCollectionFactory $ruleCollectionFactory)
@@ -24,11 +24,11 @@ class RuleCollection
 
     /**
      * @param $websiteCode
-     * @return RuleCollection
+     * @return RateCollection
      */
     public function filterWebsite($websiteCode)
     {
-        $items = array_filter($this->items, function(Rule $item) use ($websiteCode)
+        $items = array_filter($this->items, function(Rate $item) use ($websiteCode)
         {
             return $item->getWebsiteId() == $websiteCode;
         });
@@ -38,11 +38,11 @@ class RuleCollection
 
     /**
      * @param $countryCode
-     * @return RuleCollection
+     * @return RateCollection
      */
     public function filterCountry($countryCode)
     {
-        $items = array_filter($this->items, function (Rule $item) use ($countryCode)
+        $items = array_filter($this->items, function (Rate $item) use ($countryCode)
         {
             return $item->getCountry() == $countryCode;
         });
@@ -52,11 +52,11 @@ class RuleCollection
 
     /**
      * @param $postcode
-     * @return RuleCollection
+     * @return RateCollection
      */
     public function filterPostcode($postcode)
     {
-        $items = array_filter($this->items, function (Rule $item) use ($postcode)
+        $items = array_filter($this->items, function (Rate $item) use ($postcode)
         {
             return $item->matchPostcode($postcode);
         });

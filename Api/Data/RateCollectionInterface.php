@@ -2,7 +2,7 @@
 
 namespace EdmondsCommerce\Shipping\Api\Data;
 
-interface RuleCollectionInterface
+interface RateCollectionInterface
 {
     public function filterWebsite();
 

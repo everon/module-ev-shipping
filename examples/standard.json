@@ -3,7 +3,11 @@
         {
             "name": "Test Courier",
             "country": "UK",
-            "postcode": "BD17 7DB",
+            "postcode":  [
+                "BD",
+                "LS",
+                "NW1"
+            ],
             "price": 3.50
         }
     ]
