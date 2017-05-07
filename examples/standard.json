@@ -2,8 +2,8 @@
     "rules": [
         {
             "name": "Test Courier",
-            "country": "UK",
-            "postcode":  [
+            "country": "GBR",
+            "postcodes":  [
                 "BD",
                 "LS",
                 "NW1"

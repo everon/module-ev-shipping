@@ -36,9 +36,9 @@ class Rate extends AbstractModel implements RateInterface
     }
 
     /**
-     * @return string
+     * @return string[]
      */
-    public function getCountry()
+    public function getCountries()
     {
         return $this->getData('country');
     }

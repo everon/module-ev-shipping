@@ -25,18 +25,42 @@ class FilterTest extends UnitTestCase
     {
         $rate = $this->mock(Rate::class);
 
-        $rate->shouldReceive(['getPostCodes' => ['BD', 'LS', 'AD3']]);
+        $rate->shouldReceive(['getPostCodes' => ['BD', 'LS', 'AD3', 'PO36']]);
         $postcodes = [
             'LS1 1AA'  => true,
             'BD17 7DB' => true,
             'NW1 1AA'  => false,
             'SW2 1AA'  => false,
             'AD3 3BD'  => true,
+            'PO36 1AD' => true
         ];
 
         foreach ($postcodes as $pc => $expect)
         {
             $result = $this->class->filterPostcode($pc, $rate);
+            $this->assertSame($expect, $result);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function itCanMatchCountryCode()
+    {
+        $rate = $this->mock(Rate::class);
+
+        $rate->shouldReceive(['getCountries' => ['GBR', 'FRA', 'GER', 'FIN']]);
+        $countryCodes = [
+            'GBR'  => true,
+            'FRA' => true,
+            'GER'  => true,
+            'FIN'  => true,
+            'ALG'  => false,
+        ];
+
+        foreach ($countryCodes as $countryCode => $expect)
+        {
+            $result = $this->class->filterCountry($countryCode, $rate);
             $this->assertSame($expect, $result);
         }
     }

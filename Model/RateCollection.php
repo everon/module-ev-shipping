@@ -44,7 +44,7 @@ class RateCollection
     {
         $items = array_filter($this->items, function (Rate $item) use ($countryCode)
         {
-            return $item->getCountry() == $countryCode;
+            return $item->getCountries() == $countryCode;
         });
 
         return $this->ruleCollectionFactory->create($items);

@@ -16,27 +16,40 @@ class Filter
      */
     public function filterPostcode($postcode, Rate $rate)
     {
-        foreach($rate->getPostCodes() as $checkPostCode)
+        foreach ($rate->getPostCodes() as $checkPostCode)
         {
             //Wildcard match
-            if($checkPostCode === '*')
+            if ($checkPostCode === '*')
             {
                 return true;
             }
 
-            //UK district match - BD
-            $result = stristr(trim($postcode), $checkPostCode);
-            if($result !== false)
+            //UK district match - BD, LS etc
+            $result = stristr($postcode, $checkPostCode);
+            if ($result !== false)
             {
                 return true;
             }
-
-
         }
 
-        //UK sub district - BD17
-        //Wildcard - *
-//        if($postcode ==)
+        return false;
+    }
+
+    public function filterCountry($countryCode, Rate $rate)
+    {
+        foreach ($rate->getCountries() as $checkCountry)
+        {
+            if ($checkCountry == '*')
+            {
+                return true;
+            }
+
+            $result = ($checkCountry == $countryCode);
+            if ($result === true)
+            {
+                return true;
+            }
+        }
 
         return false;
     }

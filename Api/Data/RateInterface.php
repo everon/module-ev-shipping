@@ -22,7 +22,7 @@ interface RateInterface
     /**
      * @return string
      */
-    public function getCountry();
+    public function getCountries();
 
     /**
      * @return string[]
