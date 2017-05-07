@@ -64,4 +64,27 @@ class FilterTest extends UnitTestCase
             $this->assertSame($expect, $result);
         }
     }
+
+    /**
+     * @test
+     */
+    public function itCanCheckWeightBoundaries()
+    {
+        $rate = $this->mock(Rate::class);
+
+        $rate->shouldReceive(['getWeight' => ['GBR', 'FRA', 'GER', 'FIN']]);
+        $countryCodes = [
+            'GBR'  => true,
+            'FRA' => true,
+            'GER'  => true,
+            'FIN'  => true,
+            'ALG'  => false,
+        ];
+
+        foreach ($countryCodes as $countryCode => $expect)
+        {
+            $result = $this->class->filterCountry($countryCode, $rate);
+            $this->assertSame($expect, $result);
+        }
+    }
 }

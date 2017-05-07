@@ -2,12 +2,18 @@
     "rules": [
         {
             "name": "Test Courier",
-            "country": "GBR",
+            "countries": [
+                "GBR"
+            ],
             "postcodes":  [
                 "BD",
                 "LS",
                 "NW1"
             ],
+            "weight": {
+                "from": "5",
+                "to": "10"
+            },
             "price": 3.50
         }
     ]
