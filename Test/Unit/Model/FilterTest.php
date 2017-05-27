@@ -72,18 +72,17 @@ class FilterTest extends UnitTestCase
     {
         $rate = $this->mock(Rate::class);
 
-        $rate->shouldReceive(['getWeight' => ['GBR', 'FRA', 'GER', 'FIN']]);
-        $countryCodes = [
-            'GBR'  => true,
-            'FRA' => true,
-            'GER'  => true,
-            'FIN'  => true,
-            'ALG'  => false,
+        $rate->shouldReceive(['getWeightFrom' => 0, 'getWeightTo' => 9]);
+        $weights = [
+            1 => true,
+            5 => true,
+            10 => false,
+            3 => true
         ];
 
-        foreach ($countryCodes as $countryCode => $expect)
+        foreach ($weights as $weight => $expect)
         {
-            $result = $this->class->filterCountry($countryCode, $rate);
+            $result = $this->class->filterWeight($weight, $rate);
             $this->assertSame($expect, $result);
         }
     }

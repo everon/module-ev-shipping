@@ -35,6 +35,11 @@ class Filter
         return false;
     }
 
+    /**
+     * @param $countryCode
+     * @param Rate $rate
+     * @return bool
+     */
     public function filterCountry($countryCode, Rate $rate)
     {
         foreach ($rate->getCountries() as $checkCountry)
@@ -46,6 +51,25 @@ class Filter
 
             $result = ($checkCountry == $countryCode);
             if ($result === true)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $weight
+     * @param Rate $rate
+     * @return bool
+     */
+    public function filterWeight($weight, Rate $rate)
+    {
+        if($weight > $rate->getWeightFrom())
+        {
+            $rate->getWeightTo();
+            if($weight < $rate->getWeightTo())
             {
                 return true;
             }
