@@ -7,6 +7,10 @@
                 1,
                 2
             ],
+            "items": {
+                "from": 5,
+                "to": "*"
+            },
             "countries": [
                 "GBR"
             ],

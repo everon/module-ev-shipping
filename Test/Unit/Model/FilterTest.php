@@ -110,4 +110,27 @@ class FilterTest extends UnitTestCase
             $this->assertSame($expect, $result);
         }
     }
+
+    /**
+     * @test
+     */
+    public function itCanCheckItemCount()
+    {
+        $rate = $this->mock(Rate::class);
+        $rate->shouldReceive(['getItemsFrom' => 3, 'getItemsTo' => 6]);
+
+        $items = [
+            2 => false,
+            3 => true,
+            5 => true,
+            6 => true,
+            10 => false,
+        ];
+
+        foreach ($items as $itemCount => $expectation)
+        {
+            $result = $this->class->filterItemCount($itemCount, $rate);
+            $this->assertSame($expectation, $result);
+        }
+    }
 }

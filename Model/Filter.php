@@ -17,6 +17,7 @@ class Filter
     public function filterWebsite($websiteId, Rate $rate)
     {
         $websites = $rate->getWebsiteIds();
+
         return (in_array($websiteId, $websites));
     }
 
@@ -77,13 +78,28 @@ class Filter
      */
     public function filterWeight($weight, Rate $rate)
     {
-        if($weight > $rate->getWeightFrom())
+        if ($weight > $rate->getWeightFrom())
         {
             $rate->getWeightTo();
-            if($weight < $rate->getWeightTo())
+            if ($weight < $rate->getWeightTo())
             {
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $itemCount
+     * @param $rate
+     * @return bool
+     */
+    public function filterItemCount($itemCount, Rate $rate)
+    {
+        if ($itemCount >= $rate->getItemsFrom() && $itemCount <= $rate->getItemsTo())
+        {
+            return true;
         }
 
         return false;

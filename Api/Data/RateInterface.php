@@ -40,6 +40,16 @@ interface RateInterface
     public function getWeightTo();
 
     /**
+     * @return int
+     */
+    public function getItemsFrom();
+
+    /**
+     * @return int
+     */
+    public function getItemsTo();
+
+    /**
      * @return float
      */
     public function getPriceFrom();

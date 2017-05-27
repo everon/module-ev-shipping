@@ -98,4 +98,20 @@ class Rate extends AbstractModel implements RateInterface
     {
         return $this->getData('sort_order');
     }
+
+    /**
+     * @return int
+     */
+    public function getItemsFrom()
+    {
+        return $this->getData('items_from');
+    }
+
+    /**
+     * @return int
+     */
+    public function getItemsTo()
+    {
+        return $this->getData('items_to');
+    }
 }
