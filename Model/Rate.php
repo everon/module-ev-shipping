@@ -70,17 +70,17 @@ class Rate extends AbstractModel implements RateInterface
     /**
      * @return float
      */
-    public function getPriceFrom()
+    public function getCartPriceFrom()
     {
-        return $this->getData('price_from');
+        return $this->getData('cart_price_from');
     }
 
     /**
      * @return float
      */
-    public function getPriceTo()
+    public function getCartPriceTo()
     {
-        return $this->getData('price_to');
+        return $this->getData('cart_price_to');
     }
 
     /**

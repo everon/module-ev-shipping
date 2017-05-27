@@ -133,4 +133,28 @@ class FilterTest extends UnitTestCase
             $this->assertSame($expectation, $result);
         }
     }
+
+    /**
+     * @test
+     */
+    public function itCanCheckCartPrice()
+    {
+        $rate = $this->mock(Rate::class);
+        $rate->shouldReceive(['getCartPriceFrom' => 30, 'getCartPriceTo' => 60]);
+
+        $prices = [
+            10 => false,
+            15 => false,
+            30 => true,
+            50 => true,
+            60 => true,
+            100 => false
+        ];
+
+        foreach($prices as $price => $expectation)
+        {
+            $result = $this->class->filterCartPrice($price, $rate);
+            $this->assertSame($expectation, $result);
+        }
+    }
 }

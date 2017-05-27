@@ -52,12 +52,12 @@ interface RateInterface
     /**
      * @return float
      */
-    public function getPriceFrom();
+    public function getCartPriceFrom();
 
     /**
      * @return float
      */
-    public function getPriceTo();
+    public function getCartPriceTo();
 
     /**
      * @return float

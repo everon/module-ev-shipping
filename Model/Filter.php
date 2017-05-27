@@ -104,4 +104,19 @@ class Filter
 
         return false;
     }
+
+    /**
+     * @param float $price
+     * @param Rate $rate
+     * @return bool
+     */
+    public function filterCartPrice($price, Rate $rate)
+    {
+        if($price >= $rate->getCartPriceFrom() && $price <= $rate->getCartPriceTo())
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
