@@ -39,7 +39,7 @@ class Storage
         $this->ruleCollectionFactory = $ruleCollectionFactory;
     }
 
-    public function getRulePath()
+    public function getRulePath() //TODO: Make rule path injectable
     {
         return $this->directory_list->getPath('var') . '/shipping.json';
     }

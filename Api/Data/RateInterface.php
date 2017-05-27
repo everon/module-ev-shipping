@@ -15,9 +15,9 @@ interface RateInterface
     public function getName();
 
     /**
-     * @return int
+     * @return int[]
      */
-    public function getWebsiteId();
+    public function getWebsiteIds();
 
     /**
      * @return string

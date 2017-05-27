@@ -10,6 +10,17 @@ namespace EdmondsCommerce\Shipping\Model;
 class Filter
 {
     /**
+     * @param $websiteId
+     * @param Rate $rate
+     * @return bool
+     */
+    public function filterWebsite($websiteId, Rate $rate)
+    {
+        $websites = $rate->getWebsiteIds();
+        return (in_array($websiteId, $websites));
+    }
+
+    /**
      * @param string $postcode
      * @param Rate $rate
      * @return bool

@@ -28,11 +28,11 @@ class Rate extends AbstractModel implements RateInterface
     }
 
     /**
-     * @return int
+     * @return int[]
      */
-    public function getWebsiteId()
+    public function getWebsiteIds()
     {
-        return $this->getData('website_id');
+        return $this->getData('websites');
     }
 
     /**

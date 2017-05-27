@@ -2,10 +2,15 @@
     "rules": [
         {
             "name": "Test Courier",
+            "sort": 5,
+            "websites": [
+                1,
+                2
+            ],
             "countries": [
                 "GBR"
             ],
-            "postcodes":  [
+            "postcodes": [
                 "BD",
                 "LS",
                 "NW1"

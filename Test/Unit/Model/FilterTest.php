@@ -21,6 +21,30 @@ class FilterTest extends UnitTestCase
     /**
      * @test
      */
+    public function itCanFilterWebsites()
+    {
+        $rate = $this->mock(Rate::class);
+        $rate->shouldReceive('getWebsiteIds')->andReturn([
+            1,
+            3
+        ]);
+
+        $websites = [
+            1 => true,
+            2 => false,
+            3 => true,
+        ];
+
+        foreach ($websites as $website => $expect)
+        {
+            $result = $this->class->filterWebsite($website, $rate);
+            $this->assertSame($expect, $result);
+        }
+    }
+
+    /**
+     * @test
+     */
     public function itCanMatchPostcodesForUk()
     {
         $rate = $this->mock(Rate::class);
@@ -51,11 +75,11 @@ class FilterTest extends UnitTestCase
 
         $rate->shouldReceive(['getCountries' => ['GBR', 'FRA', 'GER', 'FIN']]);
         $countryCodes = [
-            'GBR'  => true,
+            'GBR' => true,
             'FRA' => true,
-            'GER'  => true,
-            'FIN'  => true,
-            'ALG'  => false,
+            'GER' => true,
+            'FIN' => true,
+            'ALG' => false,
         ];
 
         foreach ($countryCodes as $countryCode => $expect)
@@ -74,10 +98,10 @@ class FilterTest extends UnitTestCase
 
         $rate->shouldReceive(['getWeightFrom' => 0, 'getWeightTo' => 9]);
         $weights = [
-            1 => true,
-            5 => true,
+            1  => true,
+            5  => true,
             10 => false,
-            3 => true
+            3  => true
         ];
 
         foreach ($weights as $weight => $expect)
