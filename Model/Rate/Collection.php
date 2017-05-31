@@ -2,20 +2,26 @@
 
 namespace EdmondsCommerce\Shipping\Model\Rate;
 
-class Collection
+use EdmondsCommerce\Shipping\Api\Data\RateCollectionInterface;
+use EdmondsCommerce\Shipping\Api\Data\RateInterface;
+
+class Collection implements RateCollectionInterface
 {
-    /** @var Rate[] */
+    /** @var RateInterface[] */
     protected $items;
 
     /**
      * RuleCollection constructor.
-     * @param Rate[] $items
+     * @param RateInterface[] $items
      */
     public function __construct(array $items)
     {
         $this->items = $items;
     }
 
+    /**
+     * @return RateInterface[]
+     */
     public function toArray()
     {
         return $this->items;

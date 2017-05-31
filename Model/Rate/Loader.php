@@ -55,11 +55,19 @@ class Loader
 
     /**
      * @return \EdmondsCommerce\Shipping\Model\Rate\Collection
+     * @throws \RuntimeException
      */
     public function getRateCollection()
     {
         //Assume that the file is located at a specific path
-        $file = file_get_contents($this->getRatePath());
+        $file = @file_get_contents($this->getRatePath());
+
+        if($file === false)
+        {
+            //TODO: Replace with more specific exception
+            throw new \RuntimeException('Could not load shipping rates file');
+        }
+
         /** @var array $data */
         $data = json_decode($file, true);
 
@@ -72,7 +80,7 @@ class Loader
         {
             $rates[] = $this->rateFactory->create($rule);
         }
-        
+
         return $this->rateCollectionFactory->create($rates);
     }
 }

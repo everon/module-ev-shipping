@@ -7,8 +7,10 @@ use EdmondsCommerce\Shipping\Model\Rate\Resolver;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
+use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
+use Magento\Shipping\Model\Rate\ResultFactory;
 use Psr\Log\LoggerInterface;
 
 class Shipping extends AbstractCarrier implements CarrierInterface
@@ -28,6 +30,14 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      * @var Loader
      */
     private $loader;
+    /**
+     * @var ResultFactory
+     */
+    private $rateResultFactory;
+    /**
+     * @var MethodFactory
+     */
+    private $rateMethodFactory;
 
     /**
      * Shipping constructor.
@@ -36,6 +46,8 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      * @param LoggerInterface $logger
      * @param Resolver $resolver
      * @param Loader $loader
+     * @param ResultFactory $rateResultFactory
+     * @param MethodFactory $rateMethodFactory
      * @param array $data
      */
     public function __construct
@@ -45,6 +57,8 @@ class Shipping extends AbstractCarrier implements CarrierInterface
         LoggerInterface $logger,
         Resolver $resolver,
         Loader $loader,
+        ResultFactory $rateResultFactory,
+        MethodFactory $rateMethodFactory,
         array $data = []
     )
     {
@@ -52,6 +66,8 @@ class Shipping extends AbstractCarrier implements CarrierInterface
 
         $this->resolver = $resolver;
         $this->loader = $loader;
+        $this->rateResultFactory = $rateResultFactory;
+        $this->rateMethodFactory = $rateMethodFactory;
     }
 
     /**
@@ -63,11 +79,33 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      */
     public function collectRates(RateRequest $request)
     {
-        $rateCollection = $this->loader->getRateCollection();
+        try
+        {
+            $rateCollection = $this->loader->getRateCollection();
+        } catch (\RuntimeException $e)
+        {
+            $this->_logger->error($e->getMessage());
+
+            return false;
+        }
         $rates = $this->resolver->resolve($rateCollection, $request);
 
-        //Distinct on the shipping name to remove any duplicates
-        return $ruleCollection->toArray();
+        //Convert rates to results
+        $result = $this->rateResultFactory->create();
+
+        foreach ($rates as $rate)
+        {
+            $result->append($this->rateMethodFactory->create([
+                'price'         => $rate->getShippingPrice(),
+                'cost'          => $rate->getShippingPrice(),
+                'carrier'       => $rate->getName(),
+                'carrier_title' => $rate->getName(),
+                'method'        => $rate->getName(),
+                'method_title'  => $rate->getName()
+            ]));
+        }
+
+        return $result;
     }
 
     /**

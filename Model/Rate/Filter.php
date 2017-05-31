@@ -2,6 +2,8 @@
 
 namespace EdmondsCommerce\Shipping\Model\Rate;
 
+use EdmondsCommerce\Shipping\Api\Data\RateInterface;
+
 /**
  * Class Filter
  * @package EdmondsCommerce\Shipping\Model\Rate
@@ -11,10 +13,10 @@ class Filter
 {
     /**
      * @param $websiteId
-     * @param Rate $rate
+     * @param RateInterface $rate
      * @return bool
      */
-    public function filterWebsite($websiteId, Rate $rate)
+    public function filterWebsite($websiteId, RateInterface $rate)
     {
         $websites = $rate->getWebsiteIds();
 
@@ -23,10 +25,10 @@ class Filter
 
     /**
      * @param string $postcode
-     * @param Rate $rate
+     * @param RateInterface $rate
      * @return bool
      */
-    public function filterPostcode($postcode, Rate $rate)
+    public function filterPostcode($postcode, RateInterface $rate)
     {
         foreach ($rate->getPostCodes() as $checkPostCode)
         {
@@ -49,10 +51,10 @@ class Filter
 
     /**
      * @param $countryCode
-     * @param Rate $rate
+     * @param RateInterface $rate
      * @return bool
      */
-    public function filterCountry($countryCode, Rate $rate)
+    public function filterCountry($countryCode, RateInterface $rate)
     {
         foreach ($rate->getCountries() as $checkCountry)
         {
@@ -73,10 +75,10 @@ class Filter
 
     /**
      * @param $weight
-     * @param Rate $rate
+     * @param RateInterface $rate
      * @return bool
      */
-    public function filterWeight($weight, Rate $rate)
+    public function filterWeight($weight, RateInterface $rate)
     {
         if ($weight > $rate->getWeightFrom())
         {
@@ -95,7 +97,7 @@ class Filter
      * @param $rate
      * @return bool
      */
-    public function filterItemCount($itemCount, Rate $rate)
+    public function filterItemCount($itemCount, RateInterface $rate)
     {
         if ($itemCount >= $rate->getItemsFrom() && $itemCount <= $rate->getItemsTo())
         {
@@ -107,10 +109,10 @@ class Filter
 
     /**
      * @param float $price
-     * @param Rate $rate
+     * @param RateInterface $rate
      * @return bool
      */
-    public function filterCartPrice($price, Rate $rate)
+    public function filterCartPrice($price, RateInterface $rate)
     {
         if($price >= $rate->getCartPriceFrom() && $price <= $rate->getCartPriceTo())
         {
