@@ -2,7 +2,7 @@
 
 namespace EdmondsCommerce\Shipping\Test\Unit\Model;
 
-use EdmondsCommerce\Shipping\Model\Filter;
+use EdmondsCommerce\Shipping\Model\Rate\Filter;
 use EdmondsCommerce\Shipping\Model\Rate;
 use EdmondsCommerce\Shipping\Test\Unit\UnitTestCase;
 
@@ -120,10 +120,10 @@ class FilterTest extends UnitTestCase
         $rate->shouldReceive(['getItemsFrom' => 3, 'getItemsTo' => 6]);
 
         $items = [
-            2 => false,
-            3 => true,
-            5 => true,
-            6 => true,
+            2  => false,
+            3  => true,
+            5  => true,
+            6  => true,
             10 => false,
         ];
 
@@ -143,15 +143,15 @@ class FilterTest extends UnitTestCase
         $rate->shouldReceive(['getCartPriceFrom' => 30, 'getCartPriceTo' => 60]);
 
         $prices = [
-            10 => false,
-            15 => false,
-            30 => true,
-            50 => true,
-            60 => true,
+            10  => false,
+            15  => false,
+            30  => true,
+            50  => true,
+            60  => true,
             100 => false
         ];
 
-        foreach($prices as $price => $expectation)
+        foreach ($prices as $price => $expectation)
         {
             $result = $this->class->filterCartPrice($price, $rate);
             $this->assertSame($expectation, $result);

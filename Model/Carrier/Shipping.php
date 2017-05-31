@@ -2,7 +2,8 @@
 
 namespace EdmondsCommerce\Shipping\Model\Carrier;
 
-use EdmondsCommerce\Shipping\Model\Storage as RuleStorage;
+use EdmondsCommerce\Shipping\Model\Rate\Loader;
+use EdmondsCommerce\Shipping\Model\Rate\Resolver;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
@@ -16,16 +17,25 @@ class Shipping extends AbstractCarrier implements CarrierInterface
     protected $_code = 'ecshipping';
 
     /**
-     * @var RuleStorage
+     * @var Loader
      */
     private $ruleStorage;
+    /**
+     * @var Resolver
+     */
+    private $resolver;
+    /**
+     * @var Loader
+     */
+    private $loader;
 
     /**
      * Shipping constructor.
      * @param ScopeConfigInterface $scopeConfig
      * @param ErrorFactory $rateErrorFactory
      * @param LoggerInterface $logger
-     * @param RuleStorage $ruleStorage
+     * @param Resolver $resolver
+     * @param Loader $loader
      * @param array $data
      */
     public function __construct
@@ -33,12 +43,15 @@ class Shipping extends AbstractCarrier implements CarrierInterface
         ScopeConfigInterface $scopeConfig,
         ErrorFactory $rateErrorFactory,
         LoggerInterface $logger,
-        RuleStorage $ruleStorage,
+        Resolver $resolver,
+        Loader $loader,
         array $data = []
     )
     {
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
-        $this->ruleStorage = $ruleStorage;
+
+        $this->resolver = $resolver;
+        $this->loader = $loader;
     }
 
     /**
@@ -50,25 +63,8 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      */
     public function collectRates(RateRequest $request)
     {
-        $ruleCollection = $this->ruleStorage->getRuleCollection();
-
-        //Filter by the website
-        $ruleCollection = $ruleCollection->filterWebsite($request->getWebsiteId());
-
-        //Rules that match the country code first
-        $ruleCollection = $ruleCollection->filterCountry($request->getDestCountryId());
-
-        //TODO: Handle wildcards and post code matching
-        $ruleCollection = $ruleCollection->filterPostcode($request->getDestPostcode());
-
-        //Rules that match the price boundaries
-//        $ruleCollection->filterBasketTotalPrice();
-
-        //Rules that match the weight boundaries
-        //$ruleCollection = $ruleCollection->filterWeight($request->getPackageWeight());
-
-        //Sort by sort order and distinct on the shipping name to remove any duplicates
-        //$ruleCollection = $ruleCollection->getRulesSorted();
+        $rateCollection = $this->loader->getRateCollection();
+        $rates = $this->resolver->resolve($rateCollection, $request);
 
         //Distinct on the shipping name to remove any duplicates
         return $ruleCollection->toArray();

@@ -1,10 +1,10 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model;
+namespace EdmondsCommerce\Shipping\Model\Rate;
 
 /**
  * Class Filter
- * @package EdmondsCommerce\Shipping\Model
+ * @package EdmondsCommerce\Shipping\Model\Rate
  * Handles filtering of various rules
  */
 class Filter

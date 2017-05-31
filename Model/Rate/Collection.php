@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model;
+namespace EdmondsCommerce\Shipping\Model\Rate;
 
-class RateCollection
+class Collection
 {
     /** @var Rate[] */
     protected $items;

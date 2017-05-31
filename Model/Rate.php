@@ -7,7 +7,7 @@ use Magento\Framework\Model\AbstractModel;
 
 /**
  * Class Rule
- * @package EdmondsCommerce\Shipping\Model
+ * @package EdmondsCommerce\Shipping\Model\Rate
  */
 class Rate extends AbstractModel implements RateInterface
 {
