@@ -2,9 +2,9 @@
 
 namespace EdmondsCommerce\Shipping\Test\Functional;
 
-use \PHPUnit_Framework_TestCase;
+use EdmondsCommerce\Shipping\Test\TestCase;
 
-abstract class FunctionalTestCase extends PHPUnit_Framework_TestCase
+abstract class FunctionalTestCase extends TestCase
 {
     public function setUp()
     {

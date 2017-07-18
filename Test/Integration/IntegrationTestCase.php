@@ -2,9 +2,9 @@
 
 namespace EdmondsCommerce\Shipping\Test\Integration;
 
-use \PHPUnit_Framework_TestCase;
+use EdmondsCommerce\Shipping\Test\TestCase;
 
-abstract class IntegrationTestCase extends PHPUnit_Framework_TestCase
+abstract class IntegrationTestCase extends TestCase
 {
     public function setUp()
     {

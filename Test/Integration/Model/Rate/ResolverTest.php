@@ -16,7 +16,7 @@ class ResolverTest extends IntegrationTestCase
         parent::setUp();
 
         //Create the resolver
-
+        $this->resolver = $this->_objectManager->create(Resolver::class);
     }
 
     /**
