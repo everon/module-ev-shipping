@@ -20,7 +20,7 @@ interface RateInterface
     public function getWebsiteIds();
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getCountries();
 

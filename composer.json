@@ -3,7 +3,8 @@
     "description": "N/A",
     "require": {},
     "require-dev": {
-        "mockery/mockery": "dev-master"
+        "mockery/mockery": "dev-master",
+        "phpunit/phpunit": "4.1.0"
     },
     "type": "magento2-module",
     "version": "0.0.1",

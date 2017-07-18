@@ -6,8 +6,9 @@ use EdmondsCommerce\Shipping\Api\Data\RateInterface;
 use Magento\Framework\Model\AbstractModel;
 
 /**
- * Class Rule
+ * Class Rate
  * @package EdmondsCommerce\Shipping\Model\Rate
+ * Standard object that contains information about a shipping rate
  */
 class Rate extends AbstractModel implements RateInterface
 {

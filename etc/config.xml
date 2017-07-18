@@ -13,5 +13,8 @@
                 <specifiermsg>Shipping method not available</specifiermsg>
             </ecshipping>
         </carriers>
+        <ecshipping>
+            <file>var/shipping-config.json</file>
+        </ecshipping>
     </default>
 </config>
