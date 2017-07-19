@@ -71,13 +71,16 @@ class Loader
     }
 
     /**
-     * @return \EdmondsCommerce\Shipping\Model\Rate\Collection
-     * @throws \RuntimeException
+     * @param string $filePath
+     * @return Collection
      */
-    public function getRateCollection()
+    public function getRateCollection($filePath = null)
     {
-        //Assume that the file is located at a specific path
-        $filePath = $this->getRatePath();
+        //Default to the configured rate path (from config or the hard coded value)
+        if($filePath === null) {
+            $filePath = $this->getRatePath();
+        }
+
         $file = @file_get_contents($filePath);
 
         if ($file === false) {

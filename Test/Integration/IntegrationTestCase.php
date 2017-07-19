@@ -10,4 +10,9 @@ abstract class IntegrationTestCase extends TestCase
     {
         parent::setUp();
     }
+
+    protected function getFileDir()
+    {
+        return __DIR__ . '/_files';
+    }
 }
