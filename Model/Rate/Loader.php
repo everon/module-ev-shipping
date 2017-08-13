@@ -100,6 +100,6 @@ class Loader
             $rates[] = $this->rateFactory->create($rule);
         }
 
-        return $this->rateCollectionFactory->create($rates);
+        return $this->rateCollectionFactory->create(['items' => $rates]);
     }
 }

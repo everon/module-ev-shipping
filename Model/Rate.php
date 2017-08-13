@@ -12,7 +12,7 @@ use Magento\Framework\Model\AbstractModel;
  */
 class Rate extends AbstractModel implements RateInterface
 {
-    /**
+	/**
      * @return int
      */
     public function getId()
@@ -41,7 +41,7 @@ class Rate extends AbstractModel implements RateInterface
      */
     public function getCountries()
     {
-        return $this->getData('country');
+        return $this->getData('countries');
     }
 
     /**

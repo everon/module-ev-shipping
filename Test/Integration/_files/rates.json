@@ -1,6 +1,7 @@
 {
     "rates": [
         {
+            "id": 1,
             "name": "Test Courier",
             "sort": 5,
             "websites": [1, 2],
