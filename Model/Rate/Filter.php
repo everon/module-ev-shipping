@@ -30,6 +30,13 @@ class Filter
      */
     public function filterPostcode($postcode, RateInterface $rate)
     {
+        $postcodes = $rate->getPostCodes();
+        if($postcodes === null)
+        {
+            //No condition set
+            return true;
+        }
+
         foreach ($rate->getPostCodes() as $checkPostCode) {
             //Wildcard match
             if ($checkPostCode === '*') {
@@ -53,7 +60,15 @@ class Filter
      */
     public function filterCountry($countryCode, RateInterface $rate)
     {
-        foreach ($rate->getCountries() as $checkCountry) {
+        $countries = $rate->getCountries();
+
+        //If no country array is set then skip the check
+        if($countries === null)
+        {
+            return true;
+        }
+
+        foreach ($countries as $checkCountry) {
             if ($checkCountry === '*') {
                 return true;
             }
@@ -74,6 +89,15 @@ class Filter
      */
     public function filterWeight($weight, RateInterface $rate)
     {
+        $weightFrom = $rate->getWeightFrom();
+        $weightTo = $rate->getWeightTo();
+
+        if($weightFrom === null && $weightTo === null)
+        {
+            //no condition
+            return true;
+        }
+
         if ($weight > $rate->getWeightFrom()) {
             $rate->getWeightTo();
             if ($weight < $rate->getWeightTo()) {
