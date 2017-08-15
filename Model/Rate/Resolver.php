@@ -4,6 +4,8 @@ namespace EdmondsCommerce\Shipping\Model\Rate;
 
 use EdmondsCommerce\Shipping\Api\Data\RateCollectionInterface;
 use EdmondsCommerce\Shipping\Api\Data\RateInterface;
+use EdmondsCommerce\Shipping\Model\FilterCollection;
+use EdmondsCommerce\Shipping\Model\FilterCollectionFactory;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 
 /**
@@ -17,15 +19,15 @@ class Resolver
     /**
      * @var Filter
      */
-    private $filter;
+    private $filterCollection;
 
     /**
      * Resolver constructor.
-     * @param Filter $filter
+     * @param Filter $filterCollection
      */
-    public function __construct(Filter $filter)
+    public function __construct(FilterCollectionFactory $filterCollectionFactory)
     {
-        $this->filter = $filter;
+        $this->filterCollection = $filterCollectionFactory->create();
     }
 
     /**
@@ -41,6 +43,16 @@ class Resolver
 
         $result = array_filter($rates, function (RateInterface $rate) use ($request)
         {
+            foreach($this->filterCollection->getFilters() as $check)
+            {
+                if($check->filter($request, $rate) === false)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
             if (!$this->filter->filterWebsite($request->getWebsiteId(), $rate))
             {
                 return false;

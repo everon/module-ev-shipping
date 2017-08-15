@@ -1,0 +1,5 @@
+<config>
+    <filters>
+        <item name="weight">EdmondsCommerce\Shipping\Model\Filter\Weight</item>
+    </filters>
+</config>
