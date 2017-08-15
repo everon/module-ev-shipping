@@ -52,38 +52,6 @@ class Resolver
             }
 
             return true;
-
-            if (!$this->filter->filterWebsite($request->getWebsiteId(), $rate))
-            {
-                return false;
-            }
-
-            if (!$this->filter->filterCountry($request->getDestCountryId(), $rate))
-            {
-                return false;
-            }
-
-            if (!$this->filter->filterPostcode($request->getDestPostcode(), $rate))
-            {
-                return false;
-            }
-
-            if (!$this->filter->filterCartPrice($request->getOrderSubtotal(), $rate))
-            {
-                return false;
-            }
-
-            if (!$this->filter->filterWeight($request->getPackageWeight(), $rate))
-            {
-                return false;
-            }
-
-            if (!$this->filter->filterItemCount(count($request->getAllItems()), $rate))
-            {
-                return false;
-            }
-
-            return true;
         });
 
         return $result;
