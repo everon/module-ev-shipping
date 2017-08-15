@@ -57,7 +57,7 @@ class Filter
         return false;
     }
 
-    /**$this->
+    /**
      * @param $countryCode
      * @param RateInterface $rate
      * @return bool
@@ -93,7 +93,21 @@ class Filter
      */
     public function filterWeight($weight, RateInterface $rate)
     {
+        $weightFrom = $rate->getWeightFrom();
+        $weightTo = $rate->getWeightTo();
 
+        if($weightFrom === null && $weightTo === null)
+        {
+            //no condition
+            return true;
+        }
+
+        if($weight >= $weightFrom && $weight <= $weightTo)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /**

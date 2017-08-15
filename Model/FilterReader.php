@@ -41,8 +41,8 @@ class FilterReader
         return array_map(function ($arg)
         {
             return ['name' => $arg['_attribute']['name'], 'class' => $arg['_value']];
-        }, $args['config']['filters']);
 
-        return $args;
+        }, $args['config']['filters']['item']);
+
     }
 }
