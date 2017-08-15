@@ -19,7 +19,11 @@ class Filter
     public function filterWebsite($websiteId, RateInterface $rate)
     {
         $websites = $rate->getWebsiteIds();
-
+        if($websites === null)
+        {
+            //no condition set
+            return true;
+        }
         return (in_array($websiteId, $websites));
     }
 
@@ -98,11 +102,9 @@ class Filter
             return true;
         }
 
-        if ($weight > $rate->getWeightFrom()) {
-            $rate->getWeightTo();
-            if ($weight < $rate->getWeightTo()) {
-                return true;
-            }
+        if($weight >= $weightFrom && $weight <= $weightTo)
+        {
+            return true;
         }
 
         return false;
@@ -115,7 +117,16 @@ class Filter
      */
     public function filterItemCount($itemCount, RateInterface $rate)
     {
-        if ($itemCount >= $rate->getItemsFrom() && $itemCount <= $rate->getItemsTo()) {
+        $itemsFrom = $rate->getItemsFrom();
+        $itemsTo = $rate->getItemsTo();
+
+        if($itemsFrom === null && $itemsTo === null)
+        {
+            //no condition set
+            return true;
+        }
+
+        if ($itemCount >= $itemsFrom && $itemCount <= $itemsTo) {
             return true;
         }
 
@@ -129,7 +140,15 @@ class Filter
      */
     public function filterCartPrice($price, RateInterface $rate)
     {
-        if ($price >= $rate->getCartPriceFrom() && $price <= $rate->getCartPriceTo()) {
+        $priceFrom = $rate->getCartPriceFrom();
+        $priceTo = $rate->getCartPriceTo();
+        if($priceFrom == null && $priceTo == null)
+        {
+            //No condition
+            return true;
+        }
+
+        if ($price >= $priceFrom && $price <= $priceTo) {
             return true;
         }
 

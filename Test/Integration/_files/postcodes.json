@@ -2,16 +2,16 @@
     "rates": [
         {
             "id": 1,
-            "name": "Test Courier",
+            "name": "Postcode Courier",
+            "postcodes": ["BD", "LS"],
             "sort": 5,
-            "websites": [2],
             "price": 3.50
         },
         {
             "id": 2,
-            "name": "Website Courier",
+            "name": "Test Courier",
+            "postcodes": ["SW", "NW"],
             "sort": 5,
-            "websites": [1, 2],
             "price": 3.50
         }
     ]

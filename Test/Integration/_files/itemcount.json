@@ -1,0 +1,24 @@
+{
+    "rates": [
+        {
+            "id": 1,
+            "name": "Item Count Courier",
+            "sort": 5,
+            "items": {
+                "from": 2,
+                "to": 4
+            },
+            "price": 3.50
+        },
+        {
+            "id": 2,
+            "name": "Test Courier",
+            "sort": 5,
+            "items": {
+                "from": 5,
+                "to": 10
+            },
+            "price": 3.50
+        }
+    ]
+}

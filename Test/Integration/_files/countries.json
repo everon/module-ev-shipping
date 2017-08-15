@@ -3,15 +3,15 @@
         {
             "id": 1,
             "name": "Test Courier",
+            "countries": ["TW"],
             "sort": 5,
-            "websites": [2],
             "price": 3.50
         },
         {
             "id": 2,
-            "name": "Website Courier",
+            "name": "Country Courier",
+            "countries": ["GB", "FR"],
             "sort": 5,
-            "websites": [1, 2],
             "price": 3.50
         }
     ]

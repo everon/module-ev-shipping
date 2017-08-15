@@ -50,7 +50,7 @@ class ResolverTest extends IntegrationTestCase
 
         $this->assertCount(1, $rates);
         $rate = array_shift($rates);
-        $this->assertEquals($rate->getName(), 'Website Courier');
+        $this->assertEquals('Website Courier', $rate->getName());
     }
 
     /**
@@ -58,7 +58,14 @@ class ResolverTest extends IntegrationTestCase
      */
     public function itWillFilterOnCountries()
     {
+        $rateCollection = $this->getRateCollection('countries.json');
+        $request = $this->makeRateRequest(['dest_country_id' => 'GB']);
 
+        $rates = $this->resolver->resolve($rateCollection, $request);
+
+        $this->assertCount(1, $rates);
+        $rate = array_shift($rates);
+        $this->assertEquals('Country Courier', $rate->getName());
     }
 
     /**
@@ -66,7 +73,14 @@ class ResolverTest extends IntegrationTestCase
      */
     public function itWillFilterOnPostCodes()
     {
+        $rateCollection = $this->getRateCollection('postcodes.json');
+        $request = $this->makeRateRequest(['dest_postcode' => 'BD1 1AA']);
 
+        $rates = $this->resolver->resolve($rateCollection, $request);
+
+        $this->assertCount(1, $rates);
+        $rate = array_shift($rates);
+        $this->assertEquals('Postcode Courier', $rate->getName());
     }
 
     /**
@@ -74,7 +88,14 @@ class ResolverTest extends IntegrationTestCase
      */
     public function itWillFilterOnCartPrice()
     {
+        $rateCollection = $this->getRateCollection('cartprice.json');
+        $request = $this->makeRateRequest(['order_subtotal' => 25]);
 
+        $rates = $this->resolver->resolve($rateCollection, $request);
+
+        $this->assertCount(1, $rates);
+        $rate = array_shift($rates);
+        $this->assertEquals('Cart Price Courier', $rate->getName());
     }
 
     /**
@@ -82,7 +103,31 @@ class ResolverTest extends IntegrationTestCase
      */
     public function itWillFilterOnItemCount()
     {
+        $rateCollection = $this->getRateCollection('itemcount.json');
+        $request = $this->makeRateRequest(['all_items' => [
+            null, null
+        ]]);
 
+        $rates = $this->resolver->resolve($rateCollection, $request);
+
+        $this->assertCount(1, $rates);
+        $rate = array_shift($rates);
+        $this->assertEquals('Item Count Courier', $rate->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function itWillFilterOnTotalWeight()
+    {
+        $rateCollection = $this->getRateCollection('weight.json');
+        $request = $this->makeRateRequest(['package_weight' => 2]);
+
+        $rates = $this->resolver->resolve($rateCollection, $request);
+
+        $this->assertCount(1, $rates);
+        $rate = array_shift($rates);
+        $this->assertEquals('Weight Courier', $rate->getName());
     }
 
     /**
@@ -96,7 +141,7 @@ class ResolverTest extends IntegrationTestCase
         $factory = $this->_objectManager->create(RateRequestFactory::class);
 
         $defaults = $this->getRateDefaults();
-        $args = array_merge($args, $defaults);
+        $args = array_merge($defaults, $args);
 
         return $factory->create()->setData($args);
     }

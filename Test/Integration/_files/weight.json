@@ -1,0 +1,24 @@
+{
+    "rates": [
+        {
+            "id": 1,
+            "name": "Weight Courier",
+            "sort": 5,
+            "weight": {
+                "from": 2,
+                "to": 4
+            },
+            "price": 3.50
+        },
+        {
+            "id": 2,
+            "name": "Test Courier",
+            "sort": 5,
+            "weight": {
+                "from": 5,
+                "to": 10
+            },
+            "price": 3.50
+        }
+    ]
+}

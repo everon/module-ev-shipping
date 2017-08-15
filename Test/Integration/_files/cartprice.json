@@ -1,0 +1,24 @@
+{
+    "rates": [
+        {
+            "id": 1,
+            "name": "Cart Price Courier",
+            "cart_price": {
+                "from": 20,
+                "to": 50
+            },
+            "sort": 5,
+            "price": 3.50
+        },
+        {
+            "id": 2,
+            "name": "Test Courier",
+            "cart_price": {
+                "from": 5,
+                "to": 10
+            },
+            "sort": 5,
+            "price": 3.50
+        }
+    ]
+}

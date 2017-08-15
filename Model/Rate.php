@@ -49,7 +49,7 @@ class Rate extends AbstractModel implements RateInterface
      */
     public function getPostCodes()
     {
-        return $this->getData('postcode');
+        return $this->getData('postcodes');
     }
 
     /**
@@ -57,7 +57,8 @@ class Rate extends AbstractModel implements RateInterface
      */
     public function getWeightFrom()
     {
-        return $this->getData('weight_from');
+        $weight = $this->getData('weight');
+        return (isset($weight['from']) ? $weight['from'] : null);
     }
 
     /**
@@ -65,7 +66,8 @@ class Rate extends AbstractModel implements RateInterface
      */
     public function getWeightTo()
     {
-        return $this->getData('weight_to');
+        $weight = $this->getData('weight');
+        return (isset($weight['to']) ? $weight['to'] : null);
     }
 
     /**
@@ -73,7 +75,8 @@ class Rate extends AbstractModel implements RateInterface
      */
     public function getCartPriceFrom()
     {
-        return $this->getData('cart_price_from');
+        $cartPrice = $this->getData('cart_price');
+        return (isset($cartPrice['from']) ? $cartPrice['from'] : null);
     }
 
     /**
@@ -81,7 +84,8 @@ class Rate extends AbstractModel implements RateInterface
      */
     public function getCartPriceTo()
     {
-        return $this->getData('cart_price_to');
+        $cartPrice = $this->getData('cart_price');
+        return (isset($cartPrice['to']) ? $cartPrice['to'] : null);
     }
 
     /**
@@ -105,7 +109,8 @@ class Rate extends AbstractModel implements RateInterface
      */
     public function getItemsFrom()
     {
-        return $this->getData('items_from');
+        $items = $this->getData('items');
+        return (isset($items['from']) ? $items['from'] : null);
     }
 
     /**
@@ -113,6 +118,7 @@ class Rate extends AbstractModel implements RateInterface
      */
     public function getItemsTo()
     {
-        return $this->getData('items_to');
+        $items = $this->getData('items');
+        return (isset($items['to']) ? $items['to'] : null);
     }
 }
