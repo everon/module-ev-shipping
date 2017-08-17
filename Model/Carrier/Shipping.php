@@ -7,7 +7,6 @@ use EdmondsCommerce\Shipping\Model\Rate\Resolver;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
-use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
 use Magento\Shipping\Model\Rate\ResultFactory;
@@ -31,7 +30,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      */
     private $loader;
     /**
-     * @var ResultFactory
+     * @var MethodFactory
      */
     private $rateResultFactory;
     /**
@@ -46,7 +45,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      * @param LoggerInterface $logger
      * @param Resolver $resolver
      * @param Loader $loader
-     * @param ResultFactory $rateResultFactory
+     * @param MethodFactory $rateResultFactory
      * @param MethodFactory $rateMethodFactory
      * @param array $data
      */
@@ -79,9 +78,11 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      */
     public function collectRates(RateRequest $request)
     {
-        try {
+        try
+        {
             $rateCollection = $this->loader->getRateCollection();
-        } catch (\RuntimeException $e) {
+        } catch (\RuntimeException $e)
+        {
             $this->_logger->error($e->getMessage());
 
             return false;
@@ -91,15 +92,9 @@ class Shipping extends AbstractCarrier implements CarrierInterface
         //Convert rates to results
         $result = $this->rateResultFactory->create();
 
-        foreach ($rates as $rate) {
-            $result->append($this->rateMethodFactory->create([
-                'price' => $rate->getShippingPrice(),
-                'cost' => $rate->getShippingPrice(),
-                'carrier' => $rate->getName(),
-                'carrier_title' => $rate->getName(),
-                'method' => $rate->getName(),
-                'method_title' => $rate->getName()
-            ]));
+        foreach ($rates as $rate)
+        {
+            $result->append($this->rateMethodFactory->create($rate));
         }
 
         return $result;

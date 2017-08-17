@@ -64,10 +64,10 @@ class Loader
         $filePath = $this->config->getValue('ecshipping/file');
 
         if (empty($filePath)) {
-            return $this->directory_list->getPath('var') . '/shipping.json';
+            return $this->directory_list->getPath('var') . '/shipping-config.json';
         }
 
-        return $rootPath.$filePath;
+        return $rootPath.DIRECTORY_SEPARATOR.$filePath;
     }
 
     /**
