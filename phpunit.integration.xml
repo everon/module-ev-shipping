@@ -12,6 +12,9 @@
 >
     <!-- Test suites definition -->
     <testsuites>
+        <testsuite name="Unit Tests">
+            <directory suffix="Test.php">../../../vendor/edmondscommerce/m2-shipping/Test/Unit</directory>
+        </testsuite>
         <testsuite name="Integration Tests">
             <directory suffix="Test.php">../../../vendor/edmondscommerce/m2-shipping/Test/Integration</directory>
         </testsuite>
