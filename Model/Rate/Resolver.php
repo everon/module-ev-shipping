@@ -14,46 +14,40 @@ use Magento\Quote\Model\Quote\Address\RateRequest;
  * Handles the filtering of rates and returns a collection of rates
  * Velvet Resolver
  */
-class Resolver
-{
-    /**
-     * @var Filter
-     */
-    private $filterCollection;
+class Resolver {
+	/**
+	 * @var FilterCollection
+	 */
+	private $filterCollection;
 
-    /**
-     * Resolver constructor.
-     * @param Filter $filterCollection
-     */
-    public function __construct(FilterCollectionFactory $filterCollectionFactory)
-    {
-        $this->filterCollection = $filterCollectionFactory->create();
-    }
+	/**
+	 * Resolver constructor.
+	 *
+	 * @param FilterCollectionFactory $filterCollectionFactory
+	 */
+	public function __construct( FilterCollectionFactory $filterCollectionFactory ) {
+		$this->filterCollection = $filterCollectionFactory->create();
+	}
 
-    /**
-     * @param RateCollectionInterface $rates
-     * @param RateRequest $request
-     * @return RateInterface[]
-     */
-    public function resolve(RateCollectionInterface $rates, RateRequest $request)
-    {
-        //TODO: Distinct on the shipping name to remove any duplicates
+	/**
+	 * @param RateCollectionInterface $rates
+	 * @param RateRequest $request
+	 *
+	 * @return RateInterface[]
+	 */
+	public function resolve( RateCollectionInterface $rates, RateRequest $request ) {
+		$rates = $rates->toArray();
 
-        $rates = $rates->toArray();
+		$result = array_filter( $rates, function ( RateInterface $rate ) use ( $request ) {
+			foreach ( $this->filterCollection->getFilters() as $check ) {
+				if ( $check->filter( $request, $rate ) === false ) {
+					return false;
+				}
+			}
 
-        $result = array_filter($rates, function (RateInterface $rate) use ($request)
-        {
-            foreach($this->filterCollection->getFilters() as $check)
-            {
-                if($check->filter($request, $rate) === false)
-                {
-                    return false;
-                }
-            }
+			return true;
+		} );
 
-            return true;
-        });
-
-        return $result;
-    }
+		return $result;
+	}
 }
