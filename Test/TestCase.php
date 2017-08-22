@@ -6,9 +6,10 @@ use \PHPUnit_Framework_TestCase;
 
 abstract class TestCase extends AbstractController
 {
-    public function setUp()
+    public function tearDown()
     {
-        parent::setUp();
+    	\Mockery::close();
+    	parent::tearDown();
     }
 
     /**
