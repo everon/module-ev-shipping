@@ -5,13 +5,10 @@ namespace EdmondsCommerce\Shipping\Test\Unit\Model\Filter;
 use EdmondsCommerce\Shipping\Model\Filter\ItemCount;
 use Mockery\MockInterface;
 
-class ItemCountTest extends AbstractFilterTest
+class ItemCountTest extends AbstractRangeFilterTest
 {
     /** @var  ItemCount */
     protected $class;
-
-    /** @var  MockInterface */
-    private $requestMock;
 
     public function setUp()
     {
@@ -20,99 +17,31 @@ class ItemCountTest extends AbstractFilterTest
         $this->class = new ItemCount();
     }
 
-    protected function getItemCountRequestMock($count)
-    {
-        $result = [];
-        for ($i = 0; $i < $count; $i++)
-        {
-            $result[] = null;
-        }
+	/**
+	 * @param $count int Scalar value to set
+	 *
+	 * @return MockInterface
+	 */
+	protected function getRangedRequestMock( $count ) {
+		$result = [];
+		for ($i = 0; $i < $count; $i++)
+		{
+			$result[] = null;
+		}
 
-        return $this->getRateRequestMock()->shouldReceive('getAllItems')->andReturn($result)->getMock();
-    }
+		return $this->getRateRequestMock()->shouldReceive('getAllItems')->andReturn($result)->getMock();
+	}
 
-    protected function getItemCountRateMock($from = null, $to = null)
-    {
-        return $this->getRateMock()->shouldReceive([
-            'getItemsFrom' => $from,
-            'getItemsTo' => $to
-        ])->getMock();
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldSkipWhenNoRestrictionsArePlaced()
-    {
-        $request = $this->getItemCountRequestMock(5);
-        $rate = $this->getItemCountRateMock();
-
-        $this->assertTrue($this->class->filter($request, $rate));
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldAllowGreaterMinimum()
-    {
-        $request = $this->getItemCountRequestMock(5);
-        $rate = $this->getItemCountRateMock(3);
-
-        $this->assertTrue($this->class->filter($request, $rate));
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldPreventLessThanMinimum()
-    {
-        $request = $this->getItemCountRequestMock(5);
-        $rate = $this->getItemCountRateMock();
-
-        $this->assertFalse($this->class->filter($request, $rate));
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldFilterGreaterThanMaximum()
-    {
-        $request = $this->getItemCountRequestMock(10);
-        $rate = $this->getItemCountRateMock(null, 5);
-
-        $this->assertFalse($this->class->filter($request, $rate));
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldAllowLessThanMaximum()
-    {
-        $request = $this->getItemCountRequestMock(5);
-        $rate = $this->getItemCountRateMock(null, 10);
-
-        $this->assertTrue($this->class->filter($request, $rate));
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldFilterOnWeightRange()
-    {
-        $request = $this->getItemCountRequestMock(15);
-        $rate = $this->getItemCountRateMock(3, 10);
-
-        $this->assertFalse($this->class->filter($request, $rate));
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldAllInRange()
-    {
-        $request = $this->getItemCountRequestMock(5);
-        $rate = $this->getItemCountRateMock(3, 10);
-
-        $this->assertFalse($this->class->filter($request, $rate));
-    }
+	/**
+	 * @param null $from
+	 * @param null $to
+	 *
+	 * @return MockInterface
+	 */
+	protected function getRangedRateMock( $from = null, $to = null ) {
+		return $this->getRateMock()->shouldReceive([
+			'getItemsFrom' => $from,
+			'getItemsTo' => $to
+		])->getMock();
+	}
 }
