@@ -22,13 +22,12 @@
     <!-- Code coverage filters -->
     <filter>
         <whitelist addUncoveredFilesFromWhiteList="true">
-            <directory suffix=".php">../../../app/code/Magento</directory>
-            <directory suffix=".php">../../../lib/internal/Magento</directory>
             <exclude>
-                <directory>../../../app/code/*/*/Test</directory>
-                <directory>../../../lib/internal/*/*/Test</directory>
-                <directory>../../../lib/internal/*/*/*/Test</directory>
-                <directory>../../../setup/src/*/*/Test</directory>
+                <directory>../../../dev/</directory>
+                <directory>../../../app/</directory>
+                <directory>../../../lib/</directory>
+                <directory>../../../setup/</directory>
+                <directory>../../../vendor/edmondscommerce/m2-shipping/Test</directory>
             </exclude>
         </whitelist>
     </filter>
