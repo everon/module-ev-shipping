@@ -12,94 +12,92 @@ use Magento\Framework\App\Filesystem\DirectoryList;
  * @package EdmondsCommerce\Shipping\Model\Rate
  * Handles the retrieval of rules from a file
  */
-class Loader
-{
-    /**
-     * @var DirectoryList
-     */
-    private $directory_list;
+class Loader {
+	/**
+	 * @var DirectoryList
+	 */
+	private $directory_list;
 
-    /**
-     * @var \EdmondsCommerce\Shipping\Model\RateFactory
-     */
-    private $rateFactory;
+	/**
+	 * @var \EdmondsCommerce\Shipping\Model\RateFactory
+	 */
+	private $rateFactory;
 
-    /**
-     * @var \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory
-     */
-    private $rateCollectionFactory;
-    /**
-     * @var ScopeConfigInterface
-     */
-    private $config;
+	/**
+	 * @var \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory
+	 */
+	private $rateCollectionFactory;
+	/**
+	 * @var ScopeConfigInterface
+	 */
+	private $config;
 
-    /**
-     * Loader constructor.
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $config
-     * @param DirectoryList $directory_list
-     * @param RateFactory $ruleFactory
-     * @param \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory $rateCollectionFactory
-     */
-    public function __construct(
-        ScopeConfigInterface $config,
-        DirectoryList $directory_list,
-        RateFactory $ruleFactory,
-        CollectionFactory $rateCollectionFactory
-    )
-    {
-        $this->directory_list = $directory_list;
-        $this->rateFactory = $ruleFactory;
-        $this->rateCollectionFactory = $rateCollectionFactory;
-        $this->config = $config;
-    }
+	/**
+	 * Loader constructor.
+	 *
+	 * @param \Magento\Framework\App\Config\ScopeConfigInterface $config
+	 * @param DirectoryList $directory_list
+	 * @param RateFactory $rateFactory
+	 * @param \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory $rateCollectionFactory
+	 */
+	public function __construct(
+		ScopeConfigInterface $config,
+		DirectoryList $directory_list,
+		RateFactory $rateFactory,
+		CollectionFactory $rateCollectionFactory
+	) {
+		$this->directory_list        = $directory_list;
+		$this->rateFactory           = $rateFactory;
+		$this->rateCollectionFactory = $rateCollectionFactory;
+		$this->config                = $config;
+	}
 
-    /**
-     * @return string
-     */
-    public function getRatePath()
-    {
-        //Check for configuration of the file
-        $rootPath = $this->directory_list->getRoot();
+	/**
+	 * @return string
+	 */
+	public function getRatePath() {
+		//Attempt to get the file from config first
+		$filePath = $this->config->getValue( 'ecshipping/file' );
+		if ( empty( $filePath ) ) {
+			return $this->directory_list->getPath( 'var' ) . '/shipping-config.json';
+		}
 
-        $filePath = $this->config->getValue('ecshipping/file');
+		//Check for configuration of the file
+		$rootPath = $this->directory_list->getRoot();
 
-        if (empty($filePath)) {
-            return $this->directory_list->getPath('var') . '/shipping-config.json';
-        }
+		return $rootPath . DIRECTORY_SEPARATOR . $filePath;
+	}
 
-        return $rootPath.DIRECTORY_SEPARATOR.$filePath;
-    }
+	/**
+	 * @param string $filePath
+	 *
+	 * @return Collection
+	 */
+	public function getRateCollection( $filePath = null ) {
+		//Default to the configured rate path (from config or the hard coded value)
+		if ( $filePath === null ) {
+			$filePath = $this->getRatePath();
+		}
 
-    /**
-     * @param string $filePath
-     * @return Collection
-     */
-    public function getRateCollection($filePath = null)
-    {
-        //Default to the configured rate path (from config or the hard coded value)
-        if($filePath === null) {
-            $filePath = $this->getRatePath();
-        }
+		$file = @file_get_contents( $filePath );
 
-        $file = @file_get_contents($filePath);
+		if ( $file === false ) {
+			//TODO: Replace with more specific exception
+			throw new \RuntimeException( 'Could not load shipping rates file: ' . $filePath );
+		}
 
-        if ($file === false) {
-            //TODO: Replace with more specific exception
-            throw new \RuntimeException('Could not load shipping rates file: '.$filePath);
-        }
+		/** @var array $data */
+		$data = json_decode( $file, true );
 
-        /** @var array $data */
-        $data = json_decode($file, true);
+		/** @var array $rawRates */
+		$rawRates = $data['rates'];
 
-        /** @var array $rawRates */
-        $rawRates = $data['rates'];
+		//Generate the rates
+		$rates = [];
+		foreach ( $rawRates as $rule ) {
+			$rates[] = $this->rateFactory->create( $rule );
+		}
 
-        //Generate the rates
-        $rates = [];
-        foreach ($rawRates as $rule) {
-            $rates[] = $this->rateFactory->create($rule);
-        }
-
-        return $this->rateCollectionFactory->create(['items' => $rates]);
-    }
+		return $this->rateCollectionFactory->create( [ 'items' => $rates ] );
+	}
 }
