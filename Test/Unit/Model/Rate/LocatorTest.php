@@ -2,7 +2,6 @@
 
 namespace EdmondsCommerce\Shipping\Test\Unit\Model\Rate;
 
-use EdmondsCommerce\Shipping\Model\Rate\CollectionFactory;
 use EdmondsCommerce\Shipping\Model\Rate\Loader;
 use EdmondsCommerce\Shipping\Model\Rate\Locator;
 use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
@@ -25,16 +24,6 @@ class LocatorTest extends IntegrationTestCase {
 	 * @var MockInterface
 	 */
 	private $directory;
-
-	/**
-	 * @var MockInterface
-	 */
-	private $rateFactory;
-
-	/**
-	 * @var MockInterface
-	 */
-	private $collectionFactory;
 
 	public function setUp() {
 		parent::setUp();
