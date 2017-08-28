@@ -16,15 +16,12 @@ class CartPriceTest extends AbstractRangeFilterTest {
 	}
 
 	/**
-	 * @param $count int Scalar value to set
-	 *
+	 * @param int $price
 	 * @return MockInterface
+	 * @internal param int $count
 	 */
 	protected function getRangedRequestMock( $price ) {
-		$result = [];
-
-
-		return $this->getRateRequestMock()->shouldReceive( 'getOrderSubtotal' )->andReturn( $result )->getMock();
+		return $this->getRateRequestMock()->shouldReceive( 'getOrderSubtotal' )->andReturn( $price )->getMock();
 	}
 
 	/**

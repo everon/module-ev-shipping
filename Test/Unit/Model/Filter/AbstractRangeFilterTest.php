@@ -57,7 +57,7 @@ abstract class AbstractRangeFilterTest extends AbstractFilterTest {
 	 */
 	public function itShouldPreventLessThanMinimum() {
 		$request = $this->getRangedRequestMock( 5 );
-		$rate    = $this->getRangedRateMock();
+		$rate    = $this->getRangedRateMock(8);
 
 		$this->assertFalse( $this->class->filter( $request, $rate ) );
 	}
@@ -95,10 +95,10 @@ abstract class AbstractRangeFilterTest extends AbstractFilterTest {
 	/**
 	 * @test
 	 */
-	public function itShouldAllInRange() {
+	public function itShouldAllowInRange() {
 		$request = $this->getRangedRequestMock( 5 );
 		$rate    = $this->getRangedRateMock( 3, 10 );
 
-		$this->assertFalse( $this->class->filter( $request, $rate ) );
+		$this->assertTrue( $this->class->filter( $request, $rate ) );
 	}
 }
