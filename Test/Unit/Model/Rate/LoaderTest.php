@@ -4,13 +4,13 @@ namespace EdmondsCommerce\Shipping\Test\Unit\Model\Rate;
 
 use EdmondsCommerce\Shipping\Model\Rate\CollectionFactory;
 use EdmondsCommerce\Shipping\Model\Rate\Loader;
-use EdmondsCommerce\Shipping\Model\RateFactory;
+use EdmondsCommerce\Shipping\Model\Rate\Locator;
 use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Mockery\MockInterface;
 
-class LoaderTest extends IntegrationTestCase {
+class LocatorTest extends IntegrationTestCase {
 	/**
 	 * @var Loader
 	 */
@@ -41,10 +41,8 @@ class LoaderTest extends IntegrationTestCase {
 
 		$this->config            = $this->mock( ScopeConfigInterface::class );
 		$this->directory         = $this->mock( DirectoryList::class );
-		$this->rateFactory       = $this->mock( RateFactory::class );
-		$this->collectionFactory = $this->mock( CollectionFactory::class );
 
-		$this->class = new Loader( $this->config, $this->directory, $this->rateFactory, $this->collectionFactory );
+		$this->class = new Locator( $this->config, $this->directory);
 	}
 
 	/**

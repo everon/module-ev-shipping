@@ -13,10 +13,7 @@ use Magento\Framework\App\Filesystem\DirectoryList;
  * Handles the retrieval of rules from a file
  */
 class Loader {
-	/**
-	 * @var DirectoryList
-	 */
-	private $directory_list;
+
 
 	/**
 	 * @var \EdmondsCommerce\Shipping\Model\RateFactory
@@ -28,44 +25,26 @@ class Loader {
 	 */
 	private $rateCollectionFactory;
 	/**
-	 * @var ScopeConfigInterface
+	 * @var Locator
 	 */
-	private $config;
+	private $locator;
+
 
 	/**
 	 * Loader constructor.
 	 *
-	 * @param \Magento\Framework\App\Config\ScopeConfigInterface $config
-	 * @param DirectoryList $directory_list
+	 * @param Locator $locator
 	 * @param RateFactory $rateFactory
 	 * @param \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory $rateCollectionFactory
 	 */
 	public function __construct(
-		ScopeConfigInterface $config,
-		DirectoryList $directory_list,
+		Locator $locator,
 		RateFactory $rateFactory,
 		CollectionFactory $rateCollectionFactory
 	) {
-		$this->directory_list        = $directory_list;
 		$this->rateFactory           = $rateFactory;
 		$this->rateCollectionFactory = $rateCollectionFactory;
-		$this->config                = $config;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getRatePath() {
-		//Attempt to get the file from config first
-		$filePath = $this->config->getValue( 'ecshipping/file' );
-		if ( empty( $filePath ) ) {
-			return $this->directory_list->getPath( 'var' ) . '/shipping-config.json';
-		}
-
-		//Check for configuration of the file
-		$rootPath = $this->directory_list->getRoot();
-
-		return $rootPath . DIRECTORY_SEPARATOR . $filePath;
+		$this->locator = $locator;
 	}
 
 	/**
@@ -76,7 +55,7 @@ class Loader {
 	public function getRateCollection( $filePath = null ) {
 		//Default to the configured rate path (from config or the hard coded value)
 		if ( $filePath === null ) {
-			$filePath = $this->getRatePath();
+			$filePath = $this->locator->getRatePath();
 		}
 
 		$file = @file_get_contents( $filePath );
