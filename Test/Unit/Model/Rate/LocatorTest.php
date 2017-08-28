@@ -2,7 +2,6 @@
 
 namespace EdmondsCommerce\Shipping\Test\Unit\Model\Rate;
 
-use EdmondsCommerce\Shipping\Model\Rate\Loader;
 use EdmondsCommerce\Shipping\Model\Rate\Locator;
 use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -11,7 +10,7 @@ use Mockery\MockInterface;
 
 class LocatorTest extends IntegrationTestCase {
 	/**
-	 * @var Loader
+	 * @var Locator
 	 */
 	private $class;
 

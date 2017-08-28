@@ -6,6 +6,8 @@ use EdmondsCommerce\Shipping\Model\Rate\CollectionFactory;
 use EdmondsCommerce\Shipping\Model\RateFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Class Storage
@@ -28,23 +30,33 @@ class Loader {
 	 * @var Locator
 	 */
 	private $locator;
-
+	/**
+	 * @var \Symfony\Component\Filesystem\Filesystem
+	 */
+	private $filesystem;
+	/**
+	 * @var Reader
+	 */
+	private $reader;
 
 	/**
 	 * Loader constructor.
 	 *
 	 * @param Locator $locator
+	 * @param Reader $reader
 	 * @param RateFactory $rateFactory
 	 * @param \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory $rateCollectionFactory
 	 */
 	public function __construct(
 		Locator $locator,
+		Reader $reader,
 		RateFactory $rateFactory,
 		CollectionFactory $rateCollectionFactory
 	) {
+		$this->locator               = $locator;
+		$this->reader                = $reader;
 		$this->rateFactory           = $rateFactory;
 		$this->rateCollectionFactory = $rateCollectionFactory;
-		$this->locator = $locator;
 	}
 
 	/**
@@ -58,15 +70,7 @@ class Loader {
 			$filePath = $this->locator->getRatePath();
 		}
 
-		$file = @file_get_contents( $filePath );
-
-		if ( $file === false ) {
-			//TODO: Replace with more specific exception
-			throw new \RuntimeException( 'Could not load shipping rates file: ' . $filePath );
-		}
-
-		/** @var array $data */
-		$data = json_decode( $file, true );
+		$data = $this->reader->read($filePath);
 
 		/** @var array $rawRates */
 		$rawRates = $data['rates'];
