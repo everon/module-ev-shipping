@@ -28,12 +28,6 @@ class Postcode implements FilterInterface
 
         foreach ($rate->getPostCodes() as $checkPostCode)
         {
-            //Wildcard match
-            if ($checkPostCode === '*')
-            {
-                return true;
-            }
-
             //UK district match - BD, LS etc
             $result = stristr($destinationPostcode, $checkPostCode);
             if ($result !== false)

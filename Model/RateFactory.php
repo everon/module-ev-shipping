@@ -2,6 +2,8 @@
 
 namespace EdmondsCommerce\Shipping\Model;
 
+use EdmondsCommerce\Shipping\Model\Rate\Validator;
+
 class RateFactory {
 
 	/**
@@ -10,37 +12,28 @@ class RateFactory {
 	 * @var \Magento\Framework\ObjectManagerInterface
 	 */
 	protected $_objectManager = null;
+	/**
+	 * @var Validator
+	 */
+	private $validator;
 
 	/**
 	 * Factory constructor
 	 *
 	 * @param \Magento\Framework\ObjectManagerInterface $objectManager
 	 */
-	public function __construct( \Magento\Framework\ObjectManagerInterface $objectManager ) {
+	public function __construct( \Magento\Framework\ObjectManagerInterface $objectManager, Validator $validator ) {
 		$this->_objectManager = $objectManager;
+		$this->validator      = $validator;
 	}
 
 	public function create( array $data ) {
 		/** @var Rate $rate */
 		$rate = $this->_objectManager->create( Rate::class );
 
-		//Required parameters
-		$args = [ 'name', 'price'];
+		$this->validator->validateRate( $data );
 
-		$missing = [];
-		foreach($args as $arg)
-		{
-			if(!isset($data[$arg]))
-			{
-				$missing[] = $arg;
-			}
-		}
-		if(!empty($missing))
-		{
-			throw new \Exception('Missing required arguments for rate: '.implode(',', $missing));
-		}
-
-		$rate->setData($data);
+		$rate->setData( $data );
 
 		return $rate;
 	}

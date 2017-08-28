@@ -29,11 +29,6 @@ class Country implements FilterInterface
 
         foreach ($countries as $checkCountry)
         {
-            if ($checkCountry === '*')
-            {
-                return true;
-            }
-
             $result = ($checkCountry === $destCountry);
             if ($result === true)
             {

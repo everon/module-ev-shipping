@@ -2,6 +2,8 @@
 
 namespace EdmondsCommerce\Shipping\Model\Rate;
 
+use EdmondsCommerce\Shipping\Exception\InvalidJsonException;
+
 /**
  * Class Reader
  * @package EdmondsCommerce\Shipping\Model\Rate
@@ -26,7 +28,7 @@ class Reader {
 		$data = json_decode( $data, true );
 
 		if ( $data === null ) {
-			throw new \Exception( 'Invalid JSON in rate file at ' . $path );
+			throw new InvalidJsonException( 'Invalid JSON in rate file at ' . $path );
 		}
 
 		return $data;

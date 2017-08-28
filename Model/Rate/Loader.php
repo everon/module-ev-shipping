@@ -2,6 +2,7 @@
 
 namespace EdmondsCommerce\Shipping\Model\Rate;
 
+use EdmondsCommerce\Shipping\Exception\ValidationException;
 use EdmondsCommerce\Shipping\Model\Rate\CollectionFactory;
 use EdmondsCommerce\Shipping\Model\RateFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -38,18 +39,24 @@ class Loader {
 	 * @var Reader
 	 */
 	private $reader;
+	/**
+	 * @var Validator
+	 */
+	private $validator;
 
 	/**
 	 * Loader constructor.
 	 *
 	 * @param Locator $locator
 	 * @param Reader $reader
+	 * @param Validator $validator
 	 * @param RateFactory $rateFactory
 	 * @param \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory $rateCollectionFactory
 	 */
 	public function __construct(
 		Locator $locator,
 		Reader $reader,
+		Validator $validator,
 		RateFactory $rateFactory,
 		CollectionFactory $rateCollectionFactory
 	) {
@@ -57,6 +64,7 @@ class Loader {
 		$this->reader                = $reader;
 		$this->rateFactory           = $rateFactory;
 		$this->rateCollectionFactory = $rateCollectionFactory;
+		$this->validator = $validator;
 	}
 
 	/**
@@ -70,7 +78,18 @@ class Loader {
 			$filePath = $this->locator->getRatePath();
 		}
 
+		//Read the JSON to array
 		$data = $this->reader->read($filePath);
+
+		//Validate
+		try {
+			$this->validator->validateJson( $data );
+		} catch (ValidationException $e)
+		{
+			//TODO: Log the error
+			//Return an empty collection to prevent this from stopping the checkout
+			return $this->rateCollectionFactory->create(['items' => []]);
+		}
 
 		/** @var array $rawRates */
 		$rawRates = $data['rates'];
