@@ -71,7 +71,33 @@ class LoaderTest extends IntegrationTestCase {
 		$this->collectionFactory->shouldReceive('create')->once()->with(['items' => $rateResponse])
 			->andReturn($this->mock(Collection::class));
 
-		$this->class->getRateCollection();
+		$result = $this->class->getRateCollection();
+
+		$this->assertInstanceOf(Collection::class, $result);
+	}
+
+	/**
+	 * @test
+	 */
+	public function itWillAcceptAPathInsteadOfUsingConfig()
+	{
+		$this->locator->shouldNotReceive( 'getRatePath' );
+
+		$fileResponse = [
+			'rates' => []
+		];
+		$this->reader->shouldReceive('read')->once()->with('file.json')->andReturn($fileResponse);
+
+		$rateResponse = [];
+		$this->rateFactory->shouldReceive('create')->zeroOrMoreTimes()->with($fileResponse)
+		                  ->andReturn($rateResponse);
+
+		$this->collectionFactory->shouldReceive('create')->once()->with(['items' => $rateResponse])
+		                        ->andReturn($this->mock(Collection::class));
+
+		$result = $this->class->getRateCollection('file.json');
+
+		$this->assertInstanceOf(Collection::class, $result);
 	}
 
 
