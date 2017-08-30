@@ -23,13 +23,7 @@ class ItemCountTest extends AbstractRangeFilterTest
 	 * @return MockInterface
 	 */
 	protected function getRangedRequestMock( $count ) {
-		$result = [];
-		for ($i = 0; $i < $count; $i++)
-		{
-			$result[] = null;
-		}
-
-		return $this->getRateRequestMock()->shouldReceive('getAllItems')->andReturn($result)->getMock();
+        return $this->getRateRequestMock()->shouldReceive('getPackageQty')->andReturn($count)->getMock();
 	}
 
 	/**

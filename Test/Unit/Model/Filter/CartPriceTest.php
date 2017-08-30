@@ -21,7 +21,7 @@ class CartPriceTest extends AbstractRangeFilterTest {
 	 * @internal param int $count
 	 */
 	protected function getRangedRequestMock( $price ) {
-		return $this->getRateRequestMock()->shouldReceive( 'getOrderSubtotal' )->andReturn( $price )->getMock();
+		return $this->getRateRequestMock()->shouldReceive( 'getData' )->with('package_value')->andReturn( $price )->getMock();
 	}
 
 	/**

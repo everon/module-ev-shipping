@@ -89,7 +89,7 @@ class ResolverTest extends IntegrationTestCase
     public function itWillFilterOnCartPrice()
     {
         $rateCollection = $this->getRateCollection('cartprice.json');
-        $request = $this->makeRateRequest(['order_subtotal' => 25]);
+        $request = $this->makeRateRequest(['package_value' => 25]);
 
         $rates = $this->resolver->resolve($rateCollection, $request);
 
