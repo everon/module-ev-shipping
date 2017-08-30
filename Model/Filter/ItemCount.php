@@ -16,7 +16,7 @@ class ItemCount extends AbstractRangeFilter implements FilterInterface
 	 * @return float
 	 */
 	protected function getValue( RateRequest $request ) {
-		return count($request->getAllItems());
+	    return $request->getPackageQty();
 	}
 
 	/**

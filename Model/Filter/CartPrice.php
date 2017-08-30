@@ -16,7 +16,7 @@ class CartPrice extends AbstractRangeFilter implements FilterInterface {
 	 * @return float
 	 */
 	protected function getValue( RateRequest $request ) {
-		return $request->getOrderSubtotal();
+		return $request->getData('package_value');
 	}
 
 	/**
