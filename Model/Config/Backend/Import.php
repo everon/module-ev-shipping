@@ -2,30 +2,49 @@
 
 namespace EdmondsCommerce\Shipping\Model\Config\Backend;
 
+use EdmondsCommerce\Shipping\Model\Config\Backend\Import\Writer;
 use \Magento\Config\Model\Config\Backend\File;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Filesystem;
+use Magento\MediaStorage\Model\File\UploaderFactory;
 
 class Import extends File
 {
+    /**
+     * @var Writer
+     */
+    private $writer;
 
-    public function _construct()
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        ScopeConfigInterface $config,
+        \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList,
+        UploaderFactory $uploaderFactory,
+        File\RequestData\RequestDataInterface $requestData,
+        Filesystem $filesystem,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        Writer $writer,
+        array $data = [])
     {
-        parent::_construct();
+        parent::__construct($context, $registry, $config, $cacheTypeList, $uploaderFactory, $requestData, $filesystem, $resource, $resourceCollection, $data);
+        $this->writer = $writer;
     }
 
     /**
-     * @return $this
+     * @return Import
      */
     public function beforeSave()
     {
         //Attempt import
-//        $a = 1;
-//
-//        $file = $this->getValue();
-//        $fileData = file_get_contents($file['tmp_name']);
-//        $website = $this->getScopeId();
+        $file = $this->getValue();
+        $filePath = $file['tmp_name'];
 
+        $resultPath = $this->writer->handleImport($filePath);
+        $this->setValue($resultPath);
 
-        return parent::beforeSave();
+        return $this;
     }
 
     /**
@@ -35,6 +54,6 @@ class Import extends File
      */
     protected function _getAllowedExtensions()
     {
-        return ['csv'];
+        return ['json'];
     }
 }

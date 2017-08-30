@@ -1,12 +1,12 @@
 {
     "rates": [
         {
-            "name": "Test Courier",
+            "name": "Catch All Courier",
             "sort": 5,
             "websites": [1, 2],
             "items": {
                 "from": 5,
-                "to": "*"
+                "to": 10
             },
             "countries": [
                 "GBR"
@@ -17,8 +17,8 @@
                 "NW1"
             ],
             "weight": {
-                "from": "5",
-                "to": "10"
+                "from": 5.5,
+                "to": 10
             },
             "cart_price": {
                 "from": 10,
