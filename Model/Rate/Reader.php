@@ -4,7 +4,6 @@ namespace EdmondsCommerce\Shipping\Model\Rate;
 
 use EdmondsCommerce\Shipping\Exception\InvalidJsonShippingException;
 use EdmondsCommerce\Shipping\Exception\ShippingException;
-use Magento\Framework\Exception\LocalizedException;
 
 /**
  * Class Reader

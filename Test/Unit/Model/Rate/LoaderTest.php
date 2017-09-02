@@ -11,8 +11,6 @@ use EdmondsCommerce\Shipping\Model\Rate\Reader;
 use EdmondsCommerce\Shipping\Model\Rate\Validator;
 use EdmondsCommerce\Shipping\Model\RateFactory;
 use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Filesystem\DirectoryList;
 use Mockery\MockInterface;
 
 class LoaderTest extends IntegrationTestCase

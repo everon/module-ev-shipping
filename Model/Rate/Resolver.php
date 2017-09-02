@@ -20,7 +20,7 @@ class Resolver
     /**
      * @var FilterCollection
      */
-    private $filterCollection;
+    private $filterCollectionFactory;
 
     /**
      * Resolver constructor.
@@ -29,7 +29,7 @@ class Resolver
      */
     public function __construct(FilterCollectionFactory $filterCollectionFactory)
     {
-        $this->filterCollection = $filterCollectionFactory->create();
+        $this->filterCollectionFactory = $filterCollectionFactory;
     }
 
     /**
@@ -41,9 +41,9 @@ class Resolver
     public function resolve(RateCollectionInterface $rates, RateRequest $request)
     {
         $rates = $rates->toArray();
-
-        $result = array_filter($rates, function (RateInterface $rate) use ($request) {
-            foreach ($this->filterCollection->getFilters() as $check) {
+        $collection = $this->filterCollectionFactory->create();
+        $result = array_filter($rates, function (RateInterface $rate) use ($request, $collection) {
+            foreach ($collection->getFilters() as $check) {
                 if ($check->filter($request, $rate) === false) {
                     return false;
                 }

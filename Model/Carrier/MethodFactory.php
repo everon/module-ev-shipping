@@ -61,15 +61,5 @@ class MethodFactory
         $result->setPrice($rate->getShippingPrice());
 
         return $result;
-        /**
-         * [
-         * 'price' => $rate->getShippingPrice(),
-         * 'cost' => $rate->getShippingPrice(),
-         * 'carrier' => $rate->getName(),
-         * 'carrier_title' => $rate->getName(),
-         * 'method' => $rate->getName(),
-         * 'method_title' => $rate->getName()
-         * ]
-         */
     }
 }

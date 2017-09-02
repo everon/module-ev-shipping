@@ -12,7 +12,7 @@ class RateFactory
      *
      * @var \Magento\Framework\ObjectManagerInterface
      */
-    protected $_objectManager = null;
+    private $objectManager = null;
     /**
      * @var Validator
      */
@@ -22,17 +22,18 @@ class RateFactory
      * Factory constructor
      *
      * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param Validator                                 $validator
      */
     public function __construct(\Magento\Framework\ObjectManagerInterface $objectManager, Validator $validator)
     {
-        $this->_objectManager = $objectManager;
+        $this->objectManager = $objectManager;
         $this->validator      = $validator;
     }
 
     public function create(array $data)
     {
         /** @var Rate $rate */
-        $rate = $this->_objectManager->create(Rate::class);
+        $rate = $this->objectManager->create(Rate::class);
 
         $this->validator->validateRate($data);
 

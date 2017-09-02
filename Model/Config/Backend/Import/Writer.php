@@ -2,11 +2,10 @@
 
 namespace EdmondsCommerce\Shipping\Model\Config\Backend\Import;
 
-use EdmondsCommerce\Shipping\Exception\ShippingException;
 use EdmondsCommerce\Shipping\Exception\RateImportShippingException;
+use EdmondsCommerce\Shipping\Exception\ShippingException;
 use EdmondsCommerce\Shipping\Model\Rate\Validator;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Model\AbstractModel;
 
 class Writer
 {

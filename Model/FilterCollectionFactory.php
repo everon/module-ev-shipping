@@ -9,7 +9,7 @@ class FilterCollectionFactory
      *
      * @var \Magento\Framework\ObjectManagerInterface
      */
-    protected $_objectManager = null;
+    private $objectManager = null;
     /**
      * @var FilterReader
      */
@@ -27,8 +27,7 @@ class FilterCollectionFactory
         $this->reader         = $reader;
     }
 
-
-    public function create(array $data = [])
+    public function create()
     {
         //Get the configured filters
         $filters = [];

@@ -16,7 +16,7 @@ class CartPrice extends AbstractRangeFilter implements FilterInterface
      *
      * @return float
      */
-    protected function getValue(RateRequest $request)
+    public function getValue(RateRequest $request)
     {
         return $request->getData('package_value');
     }
@@ -28,7 +28,7 @@ class CartPrice extends AbstractRangeFilter implements FilterInterface
      *
      * @return float
      */
-    protected function getUpperBoundary(RateInterface $rate)
+    public function getUpperBoundary(RateInterface $rate)
     {
         return $this->parseRangeValue($rate->getCartPriceTo());
     }
@@ -40,7 +40,7 @@ class CartPrice extends AbstractRangeFilter implements FilterInterface
      *
      * @return float
      */
-    protected function getLowerBoundary(RateInterface $rate)
+    public function getLowerBoundary(RateInterface $rate)
     {
         return $this->parseRangeValue($rate->getCartPriceFrom());
     }

@@ -3,7 +3,7 @@
 namespace EdmondsCommerce\Shipping\Model\Config\Backend;
 
 use EdmondsCommerce\Shipping\Model\Config\Backend\Import\Writer;
-use \Magento\Config\Model\Config\Backend\File;
+use Magento\Config\Model\Config\Backend\File;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Filesystem;
 use Magento\MediaStorage\Model\File\UploaderFactory;
@@ -23,9 +23,9 @@ class Import extends File
         UploaderFactory $uploaderFactory,
         File\RequestData\RequestDataInterface $requestData,
         Filesystem $filesystem,
+        Writer $writer,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        Writer $writer,
         array $data = []
     ) {
         parent::__construct(
@@ -49,6 +49,7 @@ class Import extends File
     public function beforeSave()
     {
         //Attempt import
+        /** @var array $file */
         $file     = $this->getValue();
         $filePath = $file['tmp_name'];
 
@@ -63,7 +64,7 @@ class Import extends File
      *
      * @return array
      */
-    protected function _getAllowedExtensions()
+    public function _getAllowedExtensions()
     {
         return ['json'];
     }

@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
 class Shipping extends AbstractCarrier implements CarrierInterface
 {
 
-    protected $_code = 'ecshipping';
+    private $_code = 'ecshipping';
 
     /**
      * @var Loader
@@ -46,7 +46,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      * @param LoggerInterface      $logger
      * @param Resolver             $resolver
      * @param Loader               $loader
-     * @param MethodFactory        $rateResultFactory
+     * @param ResultFactory        $rateResultFactory
      * @param MethodFactory        $rateMethodFactory
      * @param array                $data
      */
