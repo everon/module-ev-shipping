@@ -6,7 +6,6 @@ use EdmondsCommerce\Shipping\Api\Data\RateInterface;
 use Magento\Quote\Model\Quote\Address\RateResult\Method;
 use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory as ParentFactory;
 
-
 /**
  * Class ResultFactory
  *

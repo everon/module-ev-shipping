@@ -58,5 +58,4 @@ class CountryFilterTest extends AbstractFilterTest
 
         $this->assertTrue($this->class->filter($request, $rate));
     }
-
 }

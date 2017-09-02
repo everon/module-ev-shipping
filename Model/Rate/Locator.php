@@ -5,7 +5,6 @@ namespace EdmondsCommerce\Shipping\Model\Rate;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
-
 /**
  * Class Storage
  *

@@ -59,8 +59,13 @@ class LoaderTest extends IntegrationTestCase
         $this->validator         = $this->mock(Validator::class);
         $this->reader            = $this->mock(Reader::class);
 
-        $this->class = new Loader($this->locator, $this->reader, $this->validator, $this->rateFactory,
-            $this->collectionFactory);
+        $this->class = new Loader(
+            $this->locator,
+            $this->reader,
+            $this->validator,
+            $this->rateFactory,
+            $this->collectionFactory
+        );
     }
 
     /**

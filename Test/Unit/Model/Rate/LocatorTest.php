@@ -48,7 +48,6 @@ class LocatorTest extends IntegrationTestCase
         $result = $this->class->getRatePath();
 
         $this->assertEquals('/var/www/vhosts/magento/var/rates.json', $result);
-
     }
 
     /**
@@ -64,6 +63,4 @@ class LocatorTest extends IntegrationTestCase
 
         $this->assertEquals('testpath/shipping-config.json', $result);
     }
-
-
 }

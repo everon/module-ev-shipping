@@ -177,6 +177,4 @@ class ResolverTest extends IntegrationTestCase
             'postcode'                    => 90034,
         ];
     }
-
-
 }

@@ -50,8 +50,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      * @param MethodFactory        $rateMethodFactory
      * @param array                $data
      */
-    public function __construct
-    (
+    public function __construct(
         ScopeConfigInterface $scopeConfig,
         ErrorFactory $rateErrorFactory,
         LoggerInterface $logger,

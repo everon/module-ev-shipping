@@ -42,7 +42,7 @@ class Resolver
     {
         $rates = $rates->toArray();
 
-        $result = array_filter($rates, function(RateInterface $rate) use ($request) {
+        $result = array_filter($rates, function (RateInterface $rate) use ($request) {
             foreach ($this->filterCollection->getFilters() as $check) {
                 if ($check->filter($request, $rate) === false) {
                     return false;

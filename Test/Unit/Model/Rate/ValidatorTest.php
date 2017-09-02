@@ -41,8 +41,10 @@ class ValidatorTest extends IntegrationTestCase
     {
         $rate = [];
 
-        $this->setExpectedException(ValidationShippingException::class,
-            'Missing required rate fields: id, name, price');
+        $this->setExpectedException(
+            ValidationShippingException::class,
+            'Missing required rate fields: id, name, price'
+        );
 
         $this->class->validateRate($rate);
     }

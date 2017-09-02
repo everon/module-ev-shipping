@@ -39,10 +39,8 @@ class FilterReader
         $path = $this->reader->getModuleDir('etc', self::MODULE_NAME) . DIRECTORY_SEPARATOR . 'filters.xml';
         $args = $this->parser->load($path)->xmlToArray();
 
-        return array_map(function($arg) {
+        return array_map(function ($arg) {
             return ['name' => $arg['_attribute']['name'], 'class' => $arg['_value']];
-
         }, $args['config']['filters']['item']);
-
     }
 }

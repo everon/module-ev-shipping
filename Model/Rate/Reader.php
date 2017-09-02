@@ -2,11 +2,9 @@
 
 namespace EdmondsCommerce\Shipping\Model\Rate;
 
-use EdmondsCommerce\Shipping\Exception\ShippingException;
 use EdmondsCommerce\Shipping\Exception\InvalidJsonShippingException;
+use EdmondsCommerce\Shipping\Exception\ShippingException;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Phrase;
-use Zend\Soap\Client\Local;
 
 /**
  * Class Reader
@@ -25,7 +23,7 @@ class Reader
     public function read($path)
     {
         if (!file_exists($path)) {
-            throw new LocalizedException(null);
+            throw new ShippingException('Could not read rate file at ' . $path);
         }
 
         //Read the file

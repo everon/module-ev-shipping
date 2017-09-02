@@ -21,7 +21,7 @@ abstract class AbstractRangeFilter implements FilterInterface
      *
      * @return float
      */
-    protected abstract function getValue(RateRequest $request);
+    abstract protected function getValue(RateRequest $request);
 
     /**
      * Upper boundary to check against
@@ -30,7 +30,7 @@ abstract class AbstractRangeFilter implements FilterInterface
      *
      * @return float
      */
-    protected abstract function getUpperBoundary(RateInterface $rate);
+    abstract protected function getUpperBoundary(RateInterface $rate);
 
     /**
      * Casts to float but honours null values
@@ -51,7 +51,7 @@ abstract class AbstractRangeFilter implements FilterInterface
      *
      * @return float
      */
-    protected abstract function getLowerBoundary(RateInterface $rate);
+    abstract protected function getLowerBoundary(RateInterface $rate);
 
     public function filter(RateRequest $request, RateInterface $rate)
     {

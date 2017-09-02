@@ -23,7 +23,7 @@ abstract class AbstractRangeFilterTest extends AbstractFilterTest
      *
      * @return MockInterface
      */
-    protected abstract function getRangedRequestMock($count);
+    abstract protected function getRangedRequestMock($count);
 
 
     /**
@@ -32,7 +32,7 @@ abstract class AbstractRangeFilterTest extends AbstractFilterTest
      *
      * @return MockInterface
      */
-    protected abstract function getRangedRateMock($from = null, $to = null);
+    abstract protected function getRangedRateMock($from = null, $to = null);
 
     /**
      * @test

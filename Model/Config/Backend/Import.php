@@ -28,8 +28,18 @@ class Import extends File
         Writer $writer,
         array $data = []
     ) {
-        parent::__construct($context, $registry, $config, $cacheTypeList, $uploaderFactory, $requestData, $filesystem,
-            $resource, $resourceCollection, $data);
+        parent::__construct(
+            $context,
+            $registry,
+            $config,
+            $cacheTypeList,
+            $uploaderFactory,
+            $requestData,
+            $filesystem,
+            $resource,
+            $resourceCollection,
+            $data
+        );
         $this->writer = $writer;
     }
 
