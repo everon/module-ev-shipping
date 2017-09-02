@@ -7,6 +7,7 @@ use EdmondsCommerce\Shipping\Api\Data\FilterInterface;
 /**
  * Container collection for all filters
  * Class FilterCollection
+ *
  * @package Magento\Shipping\Model
  */
 class FilterCollection
@@ -18,6 +19,7 @@ class FilterCollection
 
     /**
      * FilterCollection constructor.
+     *
      * @param FilterInterface[] $filters
      */
     public function __construct(array $filters = [])

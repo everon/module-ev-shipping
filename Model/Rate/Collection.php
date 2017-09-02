@@ -12,6 +12,7 @@ class Collection implements RateCollectionInterface
 
     /**
      * RuleCollection constructor.
+     *
      * @param RateInterface[] $items
      */
     public function __construct(array $items)

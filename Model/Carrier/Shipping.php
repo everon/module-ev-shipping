@@ -40,14 +40,15 @@ class Shipping extends AbstractCarrier implements CarrierInterface
 
     /**
      * Shipping constructor.
+     *
      * @param ScopeConfigInterface $scopeConfig
-     * @param ErrorFactory $rateErrorFactory
-     * @param LoggerInterface $logger
-     * @param Resolver $resolver
-     * @param Loader $loader
-     * @param MethodFactory $rateResultFactory
-     * @param MethodFactory $rateMethodFactory
-     * @param array $data
+     * @param ErrorFactory         $rateErrorFactory
+     * @param LoggerInterface      $logger
+     * @param Resolver             $resolver
+     * @param Loader               $loader
+     * @param MethodFactory        $rateResultFactory
+     * @param MethodFactory        $rateMethodFactory
+     * @param array                $data
      */
     public function __construct
     (
@@ -59,12 +60,11 @@ class Shipping extends AbstractCarrier implements CarrierInterface
         ResultFactory $rateResultFactory,
         MethodFactory $rateMethodFactory,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
 
-        $this->resolver = $resolver;
-        $this->loader = $loader;
+        $this->resolver          = $resolver;
+        $this->loader            = $loader;
         $this->rateResultFactory = $rateResultFactory;
         $this->rateMethodFactory = $rateMethodFactory;
     }
@@ -73,16 +73,15 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      * Collect and get rates
      *
      * @param RateRequest $request
+     *
      * @return \Magento\Framework\DataObject|bool|null
      * @api
      */
     public function collectRates(RateRequest $request)
     {
-        try
-        {
+        try {
             $rateCollection = $this->loader->getRateCollection();
-        } catch (\RuntimeException $e)
-        {
+        } catch (\RuntimeException $e) {
             $this->_logger->error($e->getMessage());
 
             return false;
@@ -92,8 +91,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
         //Convert rates to results
         $result = $this->rateResultFactory->create();
 
-        foreach ($rates as $rate)
-        {
+        foreach ($rates as $rate) {
             $result->append($this->rateMethodFactory->create($rate));
         }
 
@@ -109,7 +107,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
     public function getAllowedMethods()
     {
         return [
-            'ecshipping' => $this->getConfigData('name')
+            'ecshipping' => $this->getConfigData('name'),
         ];
     }
 }

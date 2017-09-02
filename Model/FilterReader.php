@@ -20,8 +20,9 @@ class FilterReader
 
     /**
      * FilterReader constructor.
+     *
      * @param \Magento\Framework\Module\Dir\Reader $reader
-     * @param Parser $parser
+     * @param Parser                               $parser
      */
     public function __construct(\Magento\Framework\Module\Dir\Reader $reader, Parser $parser)
     {
@@ -38,8 +39,7 @@ class FilterReader
         $path = $this->reader->getModuleDir('etc', self::MODULE_NAME) . DIRECTORY_SEPARATOR . 'filters.xml';
         $args = $this->parser->load($path)->xmlToArray();
 
-        return array_map(function ($arg)
-        {
+        return array_map(function($arg) {
             return ['name' => $arg['_attribute']['name'], 'class' => $arg['_value']];
 
         }, $args['config']['filters']['item']);

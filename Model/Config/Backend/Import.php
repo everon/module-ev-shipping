@@ -26,9 +26,10 @@ class Import extends File
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         Writer $writer,
-        array $data = [])
-    {
-        parent::__construct($context, $registry, $config, $cacheTypeList, $uploaderFactory, $requestData, $filesystem, $resource, $resourceCollection, $data);
+        array $data = []
+    ) {
+        parent::__construct($context, $registry, $config, $cacheTypeList, $uploaderFactory, $requestData, $filesystem,
+            $resource, $resourceCollection, $data);
         $this->writer = $writer;
     }
 
@@ -38,7 +39,7 @@ class Import extends File
     public function beforeSave()
     {
         //Attempt import
-        $file = $this->getValue();
+        $file     = $this->getValue();
         $filePath = $file['tmp_name'];
 
         $resultPath = $this->writer->handleImport($filePath);

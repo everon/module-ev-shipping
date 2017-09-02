@@ -2,7 +2,7 @@
 
 namespace EdmondsCommerce\Shipping\Exception;
 
-class Exception extends \Exception
+class ShippingException extends \Exception
 {
 
 }

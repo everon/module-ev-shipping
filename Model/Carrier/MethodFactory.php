@@ -9,6 +9,7 @@ use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory as ParentFactory;
 
 /**
  * Class ResultFactory
+ *
  * @package EdmondsCommerce\Shipping\Model\Carrier
  * Convenience class for converting rates to results
  */
@@ -33,18 +34,19 @@ class MethodFactory
     /**
      * Factory constructor
      *
-     * @param ParentFactory $factory
+     * @param ParentFactory                                      $factory
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(ParentFactory $factory, \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig)
     {
-        $this->factory = $factory;
+        $this->factory     = $factory;
         $this->scopeConfig = $scopeConfig;
     }
 
 
     /**
      * @param RateInterface $rate
+     *
      * @return Method
      */
     public function create(RateInterface $rate)

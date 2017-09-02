@@ -7,12 +7,13 @@ use Magento\Framework\Model\AbstractModel;
 
 /**
  * Class Rate
+ *
  * @package EdmondsCommerce\Shipping\Model\Rate
  * Standard object that contains information about a shipping rate
  */
 class Rate extends AbstractModel implements RateInterface
 {
-	/**
+    /**
      * @return int
      */
     public function getId()
@@ -58,6 +59,7 @@ class Rate extends AbstractModel implements RateInterface
     public function getWeightFrom()
     {
         $weight = $this->getData('weight');
+
         return (isset($weight['from']) ? $weight['from'] : null);
     }
 
@@ -67,6 +69,7 @@ class Rate extends AbstractModel implements RateInterface
     public function getWeightTo()
     {
         $weight = $this->getData('weight');
+
         return (isset($weight['to']) ? $weight['to'] : null);
     }
 
@@ -76,6 +79,7 @@ class Rate extends AbstractModel implements RateInterface
     public function getCartPriceFrom()
     {
         $cartPrice = $this->getData('cart_price');
+
         return (isset($cartPrice['from']) ? $cartPrice['from'] : null);
     }
 
@@ -85,6 +89,7 @@ class Rate extends AbstractModel implements RateInterface
     public function getCartPriceTo()
     {
         $cartPrice = $this->getData('cart_price');
+
         return (isset($cartPrice['to']) ? $cartPrice['to'] : null);
     }
 
@@ -110,6 +115,7 @@ class Rate extends AbstractModel implements RateInterface
     public function getItemsFrom()
     {
         $items = $this->getData('items');
+
         return (isset($items['from']) ? $items['from'] : null);
     }
 
@@ -119,6 +125,7 @@ class Rate extends AbstractModel implements RateInterface
     public function getItemsTo()
     {
         $items = $this->getData('items');
+
         return (isset($items['to']) ? $items['to'] : null);
     }
 }

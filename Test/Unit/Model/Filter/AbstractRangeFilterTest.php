@@ -5,100 +5,109 @@ namespace EdmondsCommerce\Shipping\Test\Unit\Model\Filter;
 use EdmondsCommerce\Shipping\Model\Filter\CartPrice;
 use Mockery\MockInterface;
 
-abstract class AbstractRangeFilterTest extends AbstractFilterTest {
+abstract class AbstractRangeFilterTest extends AbstractFilterTest
+{
 
-	/** @var  CartPrice */
-	protected $class;
+    /** @var  CartPrice */
+    protected $class;
 
-	public function setUp() {
-		parent::setUp();
+    public function setUp()
+    {
+        parent::setUp();
 
-		$this->class = new CartPrice();
-	}
+        $this->class = new CartPrice();
+    }
 
-	/**
-	 * @param $count int Scalar value to set
-	 *
-	 * @return MockInterface
-	 */
-	protected abstract function getRangedRequestMock( $count );
+    /**
+     * @param $count int Scalar value to set
+     *
+     * @return MockInterface
+     */
+    protected abstract function getRangedRequestMock($count);
 
 
-	/**
-	 * @param null $from
-	 * @param null $to
-	 *
-	 * @return MockInterface
-	 */
-	protected abstract function getRangedRateMock( $from = null, $to = null );
+    /**
+     * @param null $from
+     * @param null $to
+     *
+     * @return MockInterface
+     */
+    protected abstract function getRangedRateMock($from = null, $to = null);
 
-	/**
-	 * @test
-	 */
-	public function itShouldSkipWhenNoRestrictionsArePlaced() {
-		$request = $this->getRangedRequestMock( 5 );
-		$rate    = $this->getRangedRateMock();
+    /**
+     * @test
+     */
+    public function itShouldSkipWhenNoRestrictionsArePlaced()
+    {
+        $request = $this->getRangedRequestMock(5);
+        $rate    = $this->getRangedRateMock();
 
-		$this->assertTrue( $this->class->filter( $request, $rate ) );
-	}
+        $this->assertTrue($this->class->filter($request, $rate));
+    }
 
-	/**
-	 * @test
-	 */
-	public function itShouldAllowGreaterMinimum() {
-		$request = $this->getRangedRequestMock( 5 );
-		$rate    = $this->getRangedRateMock( 3 );
+    /**
+     * @test
+     */
+    public function itShouldAllowGreaterMinimum()
+    {
+        $request = $this->getRangedRequestMock(5);
+        $rate    = $this->getRangedRateMock(3);
 
-		$this->assertTrue( $this->class->filter( $request, $rate ) );
-	}
+        $this->assertTrue($this->class->filter($request, $rate));
+    }
 
-	/**
-	 * @test
-	 */
-	public function itShouldPreventLessThanMinimum() {
-		$request = $this->getRangedRequestMock( 5 );
-		$rate    = $this->getRangedRateMock(8);
+    /**
+     * @test
+     */
+    public function itShouldPreventLessThanMinimum()
+    {
+        $request = $this->getRangedRequestMock(5);
+        $rate    = $this->getRangedRateMock(8);
 
-		$this->assertFalse( $this->class->filter( $request, $rate ) );
-	}
+        $this->assertFalse($this->class->filter($request, $rate));
+    }
 
-	/**
-	 * @test
-	 */
-	public function itShouldFilterGreaterThanMaximum() {
-		$request = $this->getRangedRequestMock( 10 );
-		$rate    = $this->getRangedRateMock( null, 5 );
+    /**
+     * @test
+     */
+    public function itShouldFilterGreaterThanMaximum()
+    {
+        $request = $this->getRangedRequestMock(10);
+        $rate    = $this->getRangedRateMock(null, 5);
 
-		$this->assertFalse( $this->class->filter( $request, $rate ) );
-	}
+        $this->assertFalse($this->class->filter($request, $rate));
+    }
 
-	/**
-	 * @test
-	 */
-	public function itShouldAllowLessThanMaximum() {
-		$request = $this->getRangedRequestMock( 5 );
-		$rate    = $this->getRangedRateMock( null, 10 );
+    /**
+     * @test
+     */
+    public function itShouldAllowLessThanMaximum()
+    {
+        $request = $this->getRangedRequestMock(5);
+        $rate    = $this->getRangedRateMock(null, 10);
 
-		$this->assertTrue( $this->class->filter( $request, $rate ) );
-	}
+        $this->assertTrue($this->class->filter($request, $rate));
+    }
 
-	/**
-	 * @test
-	 */
-	public function itShouldFilterOnRange() {
-		$request = $this->getRangedRequestMock( 15 );
-		$rate    = $this->getRangedRateMock( 3, 10 );
+    /**
+     * @test
+     */
+    public function itShouldFilterOnRange()
+    {
+        $request = $this->getRangedRequestMock(15);
+        $rate    = $this->getRangedRateMock(3, 10);
 
-		$this->assertFalse( $this->class->filter( $request, $rate ) );
-	}
+        $this->assertFalse($this->class->filter($request, $rate));
+    }
 
-	/**
-	 * @test
-	 */
-	public function itShouldAllowInRange() {
-		$request = $this->getRangedRequestMock( 5 );
-		$rate    = $this->getRangedRateMock( 3, 10 );
+    /**
+     * @test
+     */
+    public function itShouldAllowInRange()
+    {
+        $request = $this->getRangedRequestMock(5);
+        $rate    = $this->getRangedRateMock(3, 10);
 
-		$this->assertTrue( $this->class->filter( $request, $rate ) );
-	}
+        $this->assertTrue($this->class->filter($request, $rate));
+    }
 }

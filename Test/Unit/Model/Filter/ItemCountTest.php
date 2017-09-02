@@ -17,25 +17,27 @@ class ItemCountTest extends AbstractRangeFilterTest
         $this->class = new ItemCount();
     }
 
-	/**
-	 * @param $count int Scalar value to set
-	 *
-	 * @return MockInterface
-	 */
-	protected function getRangedRequestMock( $count ) {
+    /**
+     * @param $count int Scalar value to set
+     *
+     * @return MockInterface
+     */
+    protected function getRangedRequestMock($count)
+    {
         return $this->getRateRequestMock()->shouldReceive('getPackageQty')->andReturn($count)->getMock();
-	}
+    }
 
-	/**
-	 * @param null $from
-	 * @param null $to
-	 *
-	 * @return MockInterface
-	 */
-	protected function getRangedRateMock( $from = null, $to = null ) {
-		return $this->getRateMock()->shouldReceive([
-			'getItemsFrom' => $from,
-			'getItemsTo' => $to
-		])->getMock();
-	}
+    /**
+     * @param null $from
+     * @param null $to
+     *
+     * @return MockInterface
+     */
+    protected function getRangedRateMock($from = null, $to = null)
+    {
+        return $this->getRateMock()->shouldReceive([
+            'getItemsFrom' => $from,
+            'getItemsTo'   => $to,
+        ])->getMock();
+    }
 }

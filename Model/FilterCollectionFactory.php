@@ -19,12 +19,12 @@ class FilterCollectionFactory
      * Factory constructor
      *
      * @param \Magento\Framework\ObjectManagerInterface $objectManager
-     * @param FilterReader $reader
+     * @param FilterReader                              $reader
      */
     public function __construct(\Magento\Framework\ObjectManagerInterface $objectManager, FilterReader $reader)
     {
         $this->_objectManager = $objectManager;
-        $this->reader = $reader;
+        $this->reader         = $reader;
     }
 
 
@@ -32,8 +32,7 @@ class FilterCollectionFactory
     {
         //Get the configured filters
         $filters = [];
-        foreach ($this->reader->getFilters() as $filter)
-        {
+        foreach ($this->reader->getFilters() as $filter) {
             $filters[$filter['name']] = $this->_objectManager->create($filter['class']);
         }
 

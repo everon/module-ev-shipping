@@ -2,55 +2,60 @@
 
 namespace EdmondsCommerce\Shipping\Test\Unit\Model\Rate;
 
-use EdmondsCommerce\Shipping\Exception\ValidationException;
+use EdmondsCommerce\Shipping\Exception\ValidationShippingException;
 use EdmondsCommerce\Shipping\Model\Rate\Validator;
 use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
 
-class ValidatorTest extends IntegrationTestCase {
+class ValidatorTest extends IntegrationTestCase
+{
 
-	/**
-	 * @var Validator
-	 */
-	private $class;
+    /**
+     * @var Validator
+     */
+    private $class;
 
 
-	public function setUp() {
-		parent::setUp();
+    public function setUp()
+    {
+        parent::setUp();
 
-		$this->class = new Validator();
-	}
+        $this->class = new Validator();
+    }
 
-	/**
-	 * @test
-	 */
-	public function itWillFailWithNoRatesArray() {
-		$input = [ 'test', 'fail' ];
+    /**
+     * @test
+     */
+    public function itWillFailWithNoRatesArray()
+    {
+        $input = ['test', 'fail'];
 
-		$this->setExpectedException( ValidationException::class, 'Rates is missing "rates" container' );
+        $this->setExpectedException(ValidationShippingException::class, 'Rates is missing "rates" container');
 
-		$this->class->validateJson( $input );
-	}
+        $this->class->validateJson($input);
+    }
 
-	/**
-	 * @test
-	 */
-	public function itWillFailWhenRequiredItemsAreMissing() {
-		$rate = [];
+    /**
+     * @test
+     */
+    public function itWillFailWhenRequiredItemsAreMissing()
+    {
+        $rate = [];
 
-		$this->setExpectedException(ValidationException::class, 'Missing required rate fields: id, name, price');
+        $this->setExpectedException(ValidationShippingException::class,
+            'Missing required rate fields: id, name, price');
 
-		$this->class->validateRate($rate);
-	}
+        $this->class->validateRate($rate);
+    }
 
-	/**
-	 * @test
-	 */
-	public function itWillPassWithAnEmptyRatesArray()
-	{
-		$input = ['rates' => []];
+    /**
+     * @test
+     */
+    public function itWillPassWithAnEmptyRatesArray()
+    {
+        $input = ['rates' => []];
 
-		$result = $this->class->validateJson($input);
+        $result = $this->class->validateJson($input);
 
-		$this->assertTrue($result);
-	}
+        $this->assertTrue($result);
+    }
 }
