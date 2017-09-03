@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model;
+namespace Everon\EvShipping\Model;
 
-use EdmondsCommerce\Shipping\Model\Rate\Validator;
+use Everon\EvShipping\Model\Rate\Validator;
 
 class RateFactory
 {

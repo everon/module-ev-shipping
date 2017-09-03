@@ -1,6 +1,6 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model;
+namespace Everon\EvShipping\Model;
 
 class FilterCollectionFactory
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test;
+namespace Everon\EvShipping\Test;
 
 use Magento\TestFramework\TestCase\AbstractController;
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Filter;
+namespace Everon\EvShipping\Model\Filter;
 
-use EdmondsCommerce\Shipping\Api\Data\FilterInterface;
-use EdmondsCommerce\Shipping\Api\Data\RateInterface;
+use Everon\EvShipping\Api\Data\FilterInterface;
+use Everon\EvShipping\Api\Data\RateInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 
 /**
  * Class AbstractRangeFilter
  *
- * @package EdmondsCommerce\Shipping\Model\Filter
+ * @package Everon\EvShipping\Model\Filter
  * Handles range based filters (i.e. weight range, price range)
  */
 abstract class AbstractRangeFilter implements FilterInterface

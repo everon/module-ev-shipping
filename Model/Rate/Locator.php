@@ -1,6 +1,6 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Rate;
+namespace Everon\EvShipping\Model\Rate;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
@@ -8,7 +8,7 @@ use Magento\Framework\App\Filesystem\DirectoryList;
 /**
  * Class Storage
  *
- * @package EdmondsCommerce\Shipping\Model\Rate
+ * @package Everon\EvShipping\Model\Rate
  * Handles the retrieval of rules from a file
  */
 class Locator

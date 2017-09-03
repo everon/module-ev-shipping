@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Filter;
+namespace Everon\EvShipping\Test\Unit\Model\Filter;
 
-use EdmondsCommerce\Shipping\Model\Filter\Website;
+use Everon\EvShipping\Model\Filter\Website;
 use Mockery\MockInterface;
 
 class WebsiteFilterTest extends AbstractFilterTest

@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Config\Backend;
+namespace Everon\EvShipping\Model\Config\Backend;
 
-use EdmondsCommerce\Shipping\Model\Config\Backend\Import\Writer;
+use Everon\EvShipping\Model\Config\Backend\Import\Writer;
 use Magento\Config\Model\Config\Backend\File;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Filesystem;

@@ -1,9 +1,9 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Filter;
+namespace Everon\EvShipping\Model\Filter;
 
-use EdmondsCommerce\Shipping\Api\Data\FilterInterface;
-use EdmondsCommerce\Shipping\Api\Data\RateInterface;
+use Everon\EvShipping\Api\Data\FilterInterface;
+use Everon\EvShipping\Api\Data\RateInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 
 class ItemCount extends AbstractRangeFilter implements FilterInterface

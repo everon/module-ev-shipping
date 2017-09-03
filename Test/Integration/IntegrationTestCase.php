@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Integration;
+namespace Everon\EvShipping\Test\Integration;
 
-use EdmondsCommerce\Shipping\Test\TestCase;
+use Everon\EvShipping\Test\TestCase;
 
 abstract class IntegrationTestCase extends TestCase
 {

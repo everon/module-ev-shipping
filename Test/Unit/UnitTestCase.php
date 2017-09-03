@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit;
+namespace Everon\EvShipping\Test\Unit;
 
-use EdmondsCommerce\Shipping\Test\TestCase;
+use Everon\EvShipping\Test\TestCase;
 
 abstract class UnitTestCase extends TestCase
 {

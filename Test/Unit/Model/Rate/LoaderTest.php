@@ -1,16 +1,16 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Rate;
+namespace Everon\EvShipping\Test\Unit\Model\Rate;
 
-use EdmondsCommerce\Shipping\Exception\ValidationShippingException;
-use EdmondsCommerce\Shipping\Model\Rate\Collection;
-use EdmondsCommerce\Shipping\Model\Rate\CollectionFactory;
-use EdmondsCommerce\Shipping\Model\Rate\Loader;
-use EdmondsCommerce\Shipping\Model\Rate\Locator;
-use EdmondsCommerce\Shipping\Model\Rate\Reader;
-use EdmondsCommerce\Shipping\Model\Rate\Validator;
-use EdmondsCommerce\Shipping\Model\RateFactory;
-use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
+use Everon\EvShipping\Exception\ValidationShippingException;
+use Everon\EvShipping\Model\Rate\Collection;
+use Everon\EvShipping\Model\Rate\CollectionFactory;
+use Everon\EvShipping\Model\Rate\Loader;
+use Everon\EvShipping\Model\Rate\Locator;
+use Everon\EvShipping\Model\Rate\Reader;
+use Everon\EvShipping\Model\Rate\Validator;
+use Everon\EvShipping\Model\RateFactory;
+use Everon\EvShipping\Test\Integration\IntegrationTestCase;
 use Mockery\MockInterface;
 
 class LoaderTest extends IntegrationTestCase

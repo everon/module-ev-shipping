@@ -1,10 +1,10 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Rate;
+namespace Everon\EvShipping\Test\Unit\Model\Rate;
 
-use EdmondsCommerce\Shipping\Exception\ValidationShippingException;
-use EdmondsCommerce\Shipping\Model\Rate\Validator;
-use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
+use Everon\EvShipping\Exception\ValidationShippingException;
+use Everon\EvShipping\Model\Rate\Validator;
+use Everon\EvShipping\Test\Integration\IntegrationTestCase;
 
 class ValidatorTest extends IntegrationTestCase
 {

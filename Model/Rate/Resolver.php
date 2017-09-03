@@ -1,17 +1,17 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Rate;
+namespace Everon\EvShipping\Model\Rate;
 
-use EdmondsCommerce\Shipping\Api\Data\RateCollectionInterface;
-use EdmondsCommerce\Shipping\Api\Data\RateInterface;
-use EdmondsCommerce\Shipping\Model\FilterCollection;
-use EdmondsCommerce\Shipping\Model\FilterCollectionFactory;
+use Everon\EvShipping\Api\Data\RateCollectionInterface;
+use Everon\EvShipping\Api\Data\RateInterface;
+use Everon\EvShipping\Model\FilterCollection;
+use Everon\EvShipping\Model\FilterCollectionFactory;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 
 /**
  * Class Resolver
  *
- * @package EdmondsCommerce\Shipping\Model\Rate
+ * @package Everon\EvShipping\Model\Rate
  * Handles the filtering of rates and returns a collection of rates
  * Velvet Resolver
  */

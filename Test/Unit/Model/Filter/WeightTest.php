@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Filter;
+namespace Everon\EvShipping\Test\Unit\Model\Filter;
 
-use EdmondsCommerce\Shipping\Model\Filter\Weight;
+use Everon\EvShipping\Model\Filter\Weight;
 use Mockery\MockInterface;
 
 class WeightTest extends AbstractRangeFilterTest

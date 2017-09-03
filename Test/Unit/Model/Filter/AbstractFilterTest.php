@@ -1,9 +1,9 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Filter;
+namespace Everon\EvShipping\Test\Unit\Model\Filter;
 
-use EdmondsCommerce\Shipping\Model\Rate;
-use EdmondsCommerce\Shipping\Test\Unit\UnitTestCase;
+use Everon\EvShipping\Model\Rate;
+use Everon\EvShipping\Test\Unit\UnitTestCase;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Mockery\MockInterface;
 

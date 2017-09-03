@@ -1,9 +1,9 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Rate;
+namespace Everon\EvShipping\Test\Unit\Model\Rate;
 
-use EdmondsCommerce\Shipping\Model\Rate\Locator;
-use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
+use Everon\EvShipping\Model\Rate\Locator;
+use Everon\EvShipping\Test\Integration\IntegrationTestCase;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Mockery\MockInterface;

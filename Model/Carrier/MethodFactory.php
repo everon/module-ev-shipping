@@ -1,15 +1,15 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Carrier;
+namespace Everon\EvShipping\Model\Carrier;
 
-use EdmondsCommerce\Shipping\Api\Data\RateInterface;
+use Everon\EvShipping\Api\Data\RateInterface;
 use Magento\Quote\Model\Quote\Address\RateResult\Method;
 use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory as ParentFactory;
 
 /**
  * Class ResultFactory
  *
- * @package EdmondsCommerce\Shipping\Model\Carrier
+ * @package Everon\EvShipping\Model\Carrier
  * Convenience class for converting rates to results
  */
 class MethodFactory

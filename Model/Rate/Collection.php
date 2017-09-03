@@ -1,9 +1,9 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Rate;
+namespace Everon\EvShipping\Model\Rate;
 
-use EdmondsCommerce\Shipping\Api\Data\RateCollectionInterface;
-use EdmondsCommerce\Shipping\Api\Data\RateInterface;
+use Everon\EvShipping\Api\Data\RateCollectionInterface;
+use Everon\EvShipping\Api\Data\RateInterface;
 
 class Collection implements RateCollectionInterface
 {

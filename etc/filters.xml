@@ -1,10 +1,10 @@
 <config>
     <filters>
-        <item name="cart_price">EdmondsCommerce\Shipping\Model\Filter\CartPrice</item>
-        <item name="country">EdmondsCommerce\Shipping\Model\Filter\Country</item>
-        <item name="item_count">EdmondsCommerce\Shipping\Model\Filter\ItemCount</item>
-        <item name="postcode">EdmondsCommerce\Shipping\Model\Filter\Postcode</item>
-        <item name="website">EdmondsCommerce\Shipping\Model\Filter\Website</item>
-        <item name="weight">EdmondsCommerce\Shipping\Model\Filter\Weight</item>
+        <item name="cart_price">Everon\EvShipping\Model\Filter\CartPrice</item>
+        <item name="country">Everon\EvShipping\Model\Filter\Country</item>
+        <item name="item_count">Everon\EvShipping\Model\Filter\ItemCount</item>
+        <item name="postcode">Everon\EvShipping\Model\Filter\Postcode</item>
+        <item name="website">Everon\EvShipping\Model\Filter\Website</item>
+        <item name="weight">Everon\EvShipping\Model\Filter\Weight</item>
     </filters>
 </config>

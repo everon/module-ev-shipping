@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model;
+namespace Everon\EvShipping\Model;
 
-use EdmondsCommerce\Shipping\Api\Data\FilterInterface;
+use Everon\EvShipping\Api\Data\FilterInterface;
 
 /**
  * Container collection for all filters

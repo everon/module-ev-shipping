@@ -1,14 +1,14 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Rate;
+namespace Everon\EvShipping\Model\Rate;
 
-use EdmondsCommerce\Shipping\Exception\InvalidJsonShippingException;
-use EdmondsCommerce\Shipping\Exception\ShippingException;
+use Everon\EvShipping\Exception\InvalidJsonShippingException;
+use Everon\EvShipping\Exception\ShippingException;
 
 /**
  * Class Reader
  *
- * @package EdmondsCommerce\Shipping\Model\Rate
+ * @package Everon\EvShipping\Model\Rate
  * Simple wrapper to read and parse rate classes
  */
 class Reader

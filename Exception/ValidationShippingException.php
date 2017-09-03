@@ -1,6 +1,6 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Exception;
+namespace Everon\EvShipping\Exception;
 
 class ValidationShippingException extends ShippingException
 {

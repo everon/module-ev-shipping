@@ -1,13 +1,13 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Rate;
+namespace Everon\EvShipping\Model\Rate;
 
-use EdmondsCommerce\Shipping\Exception\ValidationShippingException;
+use Everon\EvShipping\Exception\ValidationShippingException;
 
 /**
  * Class Validator
  *
- * @package EdmondsCommerce\Shipping\Model\Rate
+ * @package Everon\EvShipping\Model\Rate
  * Validates the shipping rate file for obvious things
  */
 class Validator

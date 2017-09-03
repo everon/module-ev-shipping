@@ -1,9 +1,9 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Carrier;
+namespace Everon\EvShipping\Model\Carrier;
 
-use EdmondsCommerce\Shipping\Model\Rate\Loader;
-use EdmondsCommerce\Shipping\Model\Rate\Resolver;
+use Everon\EvShipping\Model\Rate\Loader;
+use Everon\EvShipping\Model\Rate\Resolver;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;

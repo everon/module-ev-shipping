@@ -1,6 +1,6 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Api\Data;
+namespace Everon\EvShipping\Api\Data;
 
 use Magento\Quote\Model\Quote\Address\RateRequest;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model;
+namespace Everon\EvShipping\Model;
 
-use EdmondsCommerce\Shipping\Api\Data\RateInterface;
+use Everon\EvShipping\Api\Data\RateInterface;
 use Magento\Framework\Model\AbstractModel;
 
 /**
  * Class Rate
  *
- * @package EdmondsCommerce\Shipping\Model\Rate
+ * @package Everon\EvShipping\Model\Rate
  * Standard object that contains information about a shipping rate
  */
 class Rate extends AbstractModel implements RateInterface

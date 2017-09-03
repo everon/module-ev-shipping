@@ -5,7 +5,7 @@
             <ecshipping>
                 <active>0</active>
                 <allowspecific>0</allowspecific>
-                <model>\EdmondsCommerce\Shipping\Model\Carrier\Shipping</model>
+                <model>\Everon\EvShipping\Model\Carrier\Shipping</model>
                 <name>Edmonds Commerce Shipping</name>
                 <price>1.00</price>
                 <title>Edmonds Commerce Shipping</title>

@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Filter;
+namespace Everon\EvShipping\Test\Unit\Model\Filter;
 
-use EdmondsCommerce\Shipping\Model\Filter\ItemCount;
+use Everon\EvShipping\Model\Filter\ItemCount;
 use Mockery\MockInterface;
 
 class ItemCountTest extends AbstractRangeFilterTest

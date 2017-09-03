@@ -1,10 +1,10 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Config\Backend\Import;
+namespace Everon\EvShipping\Model\Config\Backend\Import;
 
-use EdmondsCommerce\Shipping\Exception\RateImportShippingException;
-use EdmondsCommerce\Shipping\Exception\ShippingException;
-use EdmondsCommerce\Shipping\Model\Rate\Validator;
+use Everon\EvShipping\Exception\RateImportShippingException;
+use Everon\EvShipping\Exception\ShippingException;
+use Everon\EvShipping\Model\Rate\Validator;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
 class Writer

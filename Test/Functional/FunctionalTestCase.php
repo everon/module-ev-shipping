@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Functional;
+namespace Everon\EvShipping\Test\Functional;
 
-use EdmondsCommerce\Shipping\Test\TestCase;
+use Everon\EvShipping\Test\TestCase;
 
 abstract class FunctionalTestCase extends TestCase
 {

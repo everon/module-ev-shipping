@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Filter;
+namespace Everon\EvShipping\Test\Unit\Model\Filter;
 
-use EdmondsCommerce\Shipping\Model\Filter\Country;
+use Everon\EvShipping\Model\Filter\Country;
 use Mockery\MockInterface;
 
 class CountryFilterTest extends AbstractFilterTest

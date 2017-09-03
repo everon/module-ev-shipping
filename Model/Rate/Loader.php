@@ -1,26 +1,26 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Model\Rate;
+namespace Everon\EvShipping\Model\Rate;
 
-use EdmondsCommerce\Shipping\Exception\ValidationShippingException;
-use EdmondsCommerce\Shipping\Model\RateFactory;
+use Everon\EvShipping\Exception\ValidationShippingException;
+use Everon\EvShipping\Model\RateFactory;
 
 /**
  * Class Storage
  *
- * @package EdmondsCommerce\Shipping\Model\Rate
+ * @package Everon\EvShipping\Model\Rate
  * Handles the retrieval of rules from a file
  */
 class Loader
 {
 
     /**
-     * @var \EdmondsCommerce\Shipping\Model\RateFactory
+     * @var \Everon\EvShipping\Model\RateFactory
      */
     private $rateFactory;
 
     /**
-     * @var \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory
+     * @var \Everon\EvShipping\Model\Rate\CollectionFactory
      */
     private $rateCollectionFactory;
 
@@ -46,7 +46,7 @@ class Loader
      * @param Reader                                                 $reader
      * @param Validator                                              $validator
      * @param RateFactory                                            $rateFactory
-     * @param \EdmondsCommerce\Shipping\Model\Rate\CollectionFactory $rateCollectionFactory
+     * @param \Everon\EvShipping\Model\Rate\CollectionFactory $rateCollectionFactory
      */
     public function __construct(
         Locator $locator,

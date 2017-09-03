@@ -1,8 +1,8 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Unit\Model\Filter;
+namespace Everon\EvShipping\Test\Unit\Model\Filter;
 
-use EdmondsCommerce\Shipping\Model\Filter\CartPrice;
+use Everon\EvShipping\Model\Filter\CartPrice;
 use Mockery\MockInterface;
 
 abstract class AbstractRangeFilterTest extends AbstractFilterTest

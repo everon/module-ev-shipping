@@ -1,10 +1,10 @@
 <?php
 
-namespace EdmondsCommerce\Shipping\Test\Integration\Model\Rate;
+namespace Everon\EvShipping\Test\Integration\Model\Rate;
 
-use EdmondsCommerce\Shipping\Model\Rate\Loader;
-use EdmondsCommerce\Shipping\Model\Rate\Resolver;
-use EdmondsCommerce\Shipping\Test\Integration\IntegrationTestCase;
+use Everon\EvShipping\Model\Rate\Loader;
+use Everon\EvShipping\Model\Rate\Resolver;
+use Everon\EvShipping\Test\Integration\IntegrationTestCase;
 use Magento\Quote\Model\Quote\Address\RateRequestFactory;
 
 class ResolverTest extends IntegrationTestCase
