@@ -2,6 +2,7 @@
 
 namespace Everon\EvShipping\Model\Rate;
 
+use Everon\EvShipping\Api\Data\FilterInterface;
 use Everon\EvShipping\Api\Data\RateCollectionInterface;
 use Everon\EvShipping\Api\Data\RateInterface;
 use Everon\EvShipping\Model\FilterCollection;
@@ -40,18 +41,15 @@ class Resolver
      */
     public function resolve(RateCollectionInterface $rates, RateRequest $request)
     {
-        $rates = $rates->toArray();
+        /** @var FilterInterface $filter */
+        $filter = null;
+
+        //Get the available filters
         $collection = $this->filterCollectionFactory->create();
-        $result = array_filter($rates, function (RateInterface $rate) use ($request, $collection) {
-            foreach ($collection->getFilters() as $check) {
-                if ($check->filter($request, $rate) === false) {
-                    return false;
-                }
-            }
 
-            return true;
-        });
+        //Filter the rates collection
+        $rates = $collection->filterRates($request, $rates);
 
-        return $result;
+        return $rates->toArray();
     }
 }
