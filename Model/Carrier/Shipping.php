@@ -18,10 +18,6 @@ class Shipping extends AbstractCarrier implements CarrierInterface
     private $_code = 'ecshipping';
 
     /**
-     * @var Loader
-     */
-    private $ruleStorage;
-    /**
      * @var Resolver
      */
     private $resolver;

@@ -1,7 +1,12 @@
 {
     "name": "edmondscommerce/m2-shipping",
     "description": "N/A",
-    "require": {},
+    "require": {
+        "php": "~5.6.0|~7.0.0",
+        "magento/magento-composer-installer": "*",
+        "magento/framework": "~100.1",
+        "magento/module-shipping": "~100.1"
+    },
     "require-dev": {
         "mockery/mockery": "dev-master",
         "phpunit/phpunit": "4.1.0"

@@ -14,13 +14,6 @@ use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory as ParentFactory;
  */
 class MethodFactory
 {
-
-    /**
-     * Object Manager instance
-     *
-     * @var \Magento\Framework\ObjectManagerInterface
-     */
-    protected $_objectManager = null;
     /**
      * @var ParentFactory
      */
@@ -41,7 +34,6 @@ class MethodFactory
         $this->factory     = $factory;
         $this->scopeConfig = $scopeConfig;
     }
-
 
     /**
      * @param RateInterface $rate
