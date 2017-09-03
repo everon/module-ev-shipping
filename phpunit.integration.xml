@@ -13,10 +13,10 @@
     <!-- Test suites definition -->
     <testsuites>
         <testsuite name="Unit Tests">
-            <directory suffix="Test.php">../../../vendor/edmondscommerce/m2-shipping/Test/Unit</directory>
+            <directory suffix="Test.php">../../../vendor/everon/module-ev-shipping/Test/Unit</directory>
         </testsuite>
         <testsuite name="Integration Tests">
-            <directory suffix="Test.php">../../../vendor/edmondscommerce/m2-shipping/Test/Integration</directory>
+            <directory suffix="Test.php">../../../vendor/everon/module-ev-shipping/Test/Integration</directory>
         </testsuite>
     </testsuites>
     <!-- Code coverage filters -->
@@ -27,7 +27,7 @@
                 <directory>../../../app/</directory>
                 <directory>../../../lib/</directory>
                 <directory>../../../setup/</directory>
-                <directory>../../../vendor/edmondscommerce/m2-shipping/Test</directory>
+                <directory>../../../vendor/everon/module-ev-shipping/Test</directory>
             </exclude>
         </whitelist>
     </filter>

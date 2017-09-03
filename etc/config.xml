@@ -6,9 +6,9 @@
                 <active>0</active>
                 <allowspecific>0</allowspecific>
                 <model>\Everon\EvShipping\Model\Carrier\Shipping</model>
-                <name>Edmonds Commerce Shipping</name>
+                <name>EV Shipping</name>
                 <price>1.00</price>
-                <title>Edmonds Commerce Shipping</title>
+                <title>EV Shipping</title>
                 <type>I</type>
                 <specifiermsg>Shipping method not available</specifiermsg>
             </ecshipping>

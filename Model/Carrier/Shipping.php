@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
 class Shipping extends AbstractCarrier implements CarrierInterface
 {
 
-    private $_code = 'ecshipping';
+    protected $_code = 'ecshipping';
 
     /**
      * @var Resolver

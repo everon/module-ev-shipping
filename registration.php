@@ -2,4 +2,4 @@
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'EdmondsCommerce_Shipping', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Everon_EvShipping', __DIR__);

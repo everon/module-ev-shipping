@@ -7,7 +7,7 @@ use Magento\Framework\Xml\Parser;
 
 class FilterReader
 {
-    const MODULE_NAME = 'EdmondsCommerce_Shipping';
+    const MODULE_NAME = 'Everon_EvShipping';
 
     /**
      * @var \Magento\Framework\Module\Dir\Reader
