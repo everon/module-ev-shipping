@@ -1,5 +1,5 @@
 {
-    "name": "everon/m2-shipping",
+    "name": "everon/module-ev-shipping",
     "description": "N/A",
     "require": {
         "php": "~5.6.0|~7.0.0",
@@ -22,7 +22,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Everon\\Shipping\\": ""
+            "Everon\\EvShipping\\": ""
         }
     }
 }
