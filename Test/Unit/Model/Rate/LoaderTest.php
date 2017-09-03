@@ -2,7 +2,7 @@
 
 namespace Everon\EvShipping\Test\Unit\Model\Rate;
 
-use Everon\EvShipping\Exception\ValidationShippingException;
+use Everon\EvShipping\Exception\ValidationException;
 use Everon\EvShipping\Model\Rate\Collection;
 use Everon\EvShipping\Model\Rate\CollectionFactory;
 use Everon\EvShipping\Model\Rate\Loader;
@@ -12,6 +12,7 @@ use Everon\EvShipping\Model\Rate\Validator;
 use Everon\EvShipping\Model\RateFactory;
 use Everon\EvShipping\Test\Integration\IntegrationTestCase;
 use Mockery\MockInterface;
+use Psr\Log\LoggerInterface;
 
 class LoaderTest extends IntegrationTestCase
 {
@@ -46,6 +47,10 @@ class LoaderTest extends IntegrationTestCase
      */
     private $validator;
 
+    /**
+     * @var  MockInterface
+     */
+    private $logger;
 
     public function setUp()
     {
@@ -56,12 +61,14 @@ class LoaderTest extends IntegrationTestCase
         $this->locator           = $this->mock(Locator::class);
         $this->validator         = $this->mock(Validator::class);
         $this->reader            = $this->mock(Reader::class);
+        $this->logger            = $this->mock(LoggerInterface::class);
 
         $this->class = new Loader(
             $this->locator,
             $this->reader,
             $this->validator,
             $this->rateFactory,
+            $this->logger,
             $this->collectionFactory
         );
     }
@@ -130,7 +137,8 @@ class LoaderTest extends IntegrationTestCase
         ];
         $this->reader->shouldReceive('read')->once()->with('file.json')->andReturn($fileResponse);
 
-        $this->validator->shouldReceive('validateJson')->once()->withAnyArgs()->andThrow(ValidationShippingException::class);
+        $this->validator->shouldReceive('validateJson')->once()->withAnyArgs()->andThrow(ValidationException::class);
+        $this->logger->shouldReceive('error')->once()->withAnyArgs();
 
         $this->collectionFactory->shouldReceive('create')->once()->with(['items' => []])
                                 ->andReturn($this->mock(Collection::class));

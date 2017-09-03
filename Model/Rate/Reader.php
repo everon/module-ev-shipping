@@ -2,7 +2,7 @@
 
 namespace Everon\EvShipping\Model\Rate;
 
-use Everon\EvShipping\Exception\InvalidJsonShippingException;
+use Everon\EvShipping\Exception\InvalidJsonException;
 use Everon\EvShipping\Exception\ShippingException;
 
 /**
@@ -32,7 +32,7 @@ class Reader
         $data = json_decode($data, true);
 
         if ($data === null) {
-            throw new InvalidJsonShippingException('Invalid JSON in rate file at ' . $path);
+            throw new InvalidJsonException('Invalid JSON in rate file at ' . $path);
         }
 
         return $data;

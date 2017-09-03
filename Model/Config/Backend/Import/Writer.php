@@ -2,7 +2,7 @@
 
 namespace Everon\EvShipping\Model\Config\Backend\Import;
 
-use Everon\EvShipping\Exception\RateImportShippingException;
+use Everon\EvShipping\Exception\RateImportException;
 use Everon\EvShipping\Exception\ShippingException;
 use Everon\EvShipping\Model\Rate\Validator;
 use Magento\Framework\App\Filesystem\DirectoryList;
@@ -43,19 +43,19 @@ class Writer
     {
         //Check file exists
         if (!file_exists($filePath)) {
-            throw new RateImportShippingException('Could not find the uploader rates file at: ' . $filePath);
+            throw new RateImportException('Could not find the uploader rates file at: ' . $filePath);
         }
 
         //Try and read the file
         $data = @file_get_contents($filePath);
         if ($data === false) {
-            throw new RateImportShippingException('Could not read the file at ' . $filePath);
+            throw new RateImportException('Could not read the file at ' . $filePath);
         }
 
         //Try and decode the file
         $json = json_decode($data, true);
         if ($json === null) {
-            throw new RateImportShippingException('Invalid Json in uploaded rate file');
+            throw new RateImportException('Invalid Json in uploaded rate file');
         }
 
         //Attempt validation

@@ -2,7 +2,7 @@
 
 namespace Everon\EvShipping\Model\Rate;
 
-use Everon\EvShipping\Exception\ValidationShippingException;
+use Everon\EvShipping\Exception\ValidationException;
 
 /**
  * Class Validator
@@ -19,12 +19,12 @@ class Validator
      * @param array $data
      *
      * @return bool
-     * @throws ValidationShippingException
+     * @throws ValidationException
      */
     public function validateJson(array $data)
     {
         if (!isset($data['rates'])) {
-            throw new ValidationShippingException('Rates is missing "rates" container');
+            throw new ValidationException('Rates is missing "rates" container');
         }
 
         return $this->validateRateCollection($data['rates']);
@@ -36,7 +36,7 @@ class Validator
      * @param array $rates
      *
      * @return bool
-     * @throws ValidationShippingException
+     * @throws ValidationException
      */
     public function validateRateCollection(array $rates)
     {
@@ -54,7 +54,7 @@ class Validator
      * @param array $data
      *
      * @return bool
-     * @throws ValidationShippingException
+     * @throws ValidationException
      */
     public function validateRate(array $data)
     {
@@ -69,7 +69,7 @@ class Validator
         }
 
         if ($missing) {
-            throw new ValidationShippingException('Missing required rate fields: ' . implode(', ', $missing));
+            throw new ValidationException('Missing required rate fields: ' . implode(', ', $missing));
         }
 
         return true;

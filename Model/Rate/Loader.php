@@ -2,8 +2,9 @@
 
 namespace Everon\EvShipping\Model\Rate;
 
-use Everon\EvShipping\Exception\ValidationShippingException;
+use Everon\EvShipping\Exception\ValidationException;
 use Everon\EvShipping\Model\RateFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class Storage
@@ -38,6 +39,10 @@ class Loader
      * @var Validator
      */
     private $validator;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * Loader constructor.
@@ -53,6 +58,7 @@ class Loader
         Reader $reader,
         Validator $validator,
         RateFactory $rateFactory,
+        LoggerInterface $logger,
         CollectionFactory $rateCollectionFactory
     ) {
         $this->locator               = $locator;
@@ -60,6 +66,7 @@ class Loader
         $this->rateFactory           = $rateFactory;
         $this->rateCollectionFactory = $rateCollectionFactory;
         $this->validator             = $validator;
+        $this->logger = $logger;
     }
 
     /**
@@ -80,8 +87,8 @@ class Loader
         //Validate
         try {
             $this->validator->validateJson($data);
-        } catch (ValidationShippingException $e) {
-            //TODO: Log the error
+        } catch (ValidationException $e) {
+            $this->logger->error('Could not parse json file');
             //Return an empty collection to prevent this from stopping the checkout
             return $this->rateCollectionFactory->create(['items' => []]);
         }

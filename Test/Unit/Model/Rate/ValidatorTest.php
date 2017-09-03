@@ -2,7 +2,7 @@
 
 namespace Everon\EvShipping\Test\Unit\Model\Rate;
 
-use Everon\EvShipping\Exception\ValidationShippingException;
+use Everon\EvShipping\Exception\ValidationException;
 use Everon\EvShipping\Model\Rate\Validator;
 use Everon\EvShipping\Test\Integration\IntegrationTestCase;
 
@@ -29,7 +29,7 @@ class ValidatorTest extends IntegrationTestCase
     {
         $input = ['test', 'fail'];
 
-        $this->setExpectedException(ValidationShippingException::class, 'Rates is missing "rates" container');
+        $this->setExpectedException(ValidationException::class, 'Rates is missing "rates" container');
 
         $this->class->validateJson($input);
     }
@@ -42,7 +42,7 @@ class ValidatorTest extends IntegrationTestCase
         $rate = [];
 
         $this->setExpectedException(
-            ValidationShippingException::class,
+            ValidationException::class,
             'Missing required rate fields: id, name, price'
         );
 
