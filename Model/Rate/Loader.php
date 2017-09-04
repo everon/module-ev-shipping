@@ -3,7 +3,6 @@
 namespace Everon\EvShipping\Model\Rate;
 
 use Everon\EvShipping\Exception\ValidationException;
-use Everon\EvShipping\Model\RateFactory;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -16,12 +15,12 @@ class Loader
 {
 
     /**
-     * @var \Everon\EvShipping\Model\RateFactory
+     * @var Everon\EvShipping\Model\RateFactory
      */
     private $rateFactory;
 
     /**
-     * @var \Everon\EvShipping\Model\Rate\CollectionFactory
+     * @var Everon\EvShipping\Model\Rate\CollectionFactory
      */
     private $rateCollectionFactory;
 
@@ -39,6 +38,7 @@ class Loader
      * @var Validator
      */
     private $validator;
+
     /**
      * @var LoggerInterface
      */
@@ -47,26 +47,27 @@ class Loader
     /**
      * Loader constructor.
      *
-     * @param Locator                                                $locator
-     * @param Reader                                                 $reader
-     * @param Validator                                              $validator
-     * @param RateFactory                                            $rateFactory
+     * @param \Everon\EvShipping\Model\RateInterfaceFactory   $rateFactory
      * @param \Everon\EvShipping\Model\Rate\CollectionFactory $rateCollectionFactory
+     * @param Locator                                         $locator
+     * @param Reader                                          $reader
+     * @param Validator                                       $validator
+     * @param LoggerInterface                                 $logger
      */
     public function __construct(
+        \Everon\EvShipping\Model\RateFactory $rateFactory,
+        \Everon\EvShipping\Model\Rate\CollectionFactory $rateCollectionFactory,
         Locator $locator,
         Reader $reader,
         Validator $validator,
-        RateFactory $rateFactory,
-        LoggerInterface $logger,
-        CollectionFactory $rateCollectionFactory
+        LoggerInterface $logger
     ) {
         $this->locator               = $locator;
         $this->reader                = $reader;
         $this->rateFactory           = $rateFactory;
         $this->rateCollectionFactory = $rateCollectionFactory;
         $this->validator             = $validator;
-        $this->logger = $logger;
+        $this->logger                = $logger;
     }
 
     /**
@@ -89,6 +90,7 @@ class Loader
             $this->validator->validateJson($data);
         } catch (ValidationException $e) {
             $this->logger->error('Could not parse json file');
+
             //Return an empty collection to prevent this from stopping the checkout
             return $this->rateCollectionFactory->create(['items' => []]);
         }
@@ -99,7 +101,9 @@ class Loader
         //Generate the rates
         $rates = [];
         foreach ($rawRates as $rule) {
-            $rates[] = $this->rateFactory->create($rule);
+            $this->validator->validateRate($rule);
+            $temp = $this->rateFactory->create($rule);
+            $rates[] = $temp;
         }
 
         return $this->rateCollectionFactory->create(['items' => $rates]);
