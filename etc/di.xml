@@ -3,4 +3,23 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Everon\EvShipping\Api\Data\FilterCollectionInterface" type="Everon\EvShipping\Model\FilterCollection"/>
     <preference for="Everon\EvShipping\Api\Data\RateCollectionInterface" type="Everon\EvShipping\Model\Rate\Collection"/>
+
+    <virtualType name="EvFilterCollection" type="Everon\EvShipping\Model\FilterCollection">
+        <arguments>
+            <argument name="filters" xsi:type="array">
+                <item name="CartPrice" xsi:type="object">Everon\EvShipping\Model\Filter\CartPrice</item>
+                <item name="Country" xsi:type="object">Everon\EvShipping\Model\Filter\Country</item>
+                <item name="ItemCount" xsi:type="object">Everon\EvShipping\Model\Filter\ItemCount</item>
+                <item name="Postcode" xsi:type="object">Everon\EvShipping\Model\Filter\Postcode</item>
+                <item name="Website" xsi:type="object">Everon\EvShipping\Model\Filter\Website</item>
+                <item name="Weight" xsi:type="object">Everon\EvShipping\Model\Filter\Weight</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Everon\EvShipping\Model\Rate\Resolver">
+        <arguments>
+            <argument name="filterCollection" xsi:type="object">EvFilterCollection</argument>
+        </arguments>
+    </type>
 </config>

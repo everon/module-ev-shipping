@@ -3,6 +3,8 @@
 namespace Everon\EvShipping\Model\Rate;
 
 use Everon\EvShipping\Exception\ValidationException;
+use Everon\EvShipping\Model\Rate\CollectionFactory;
+use Everon\EvShipping\Model\RateFactory;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -47,16 +49,16 @@ class Loader
     /**
      * Loader constructor.
      *
-     * @param \Everon\EvShipping\Model\RateInterfaceFactory   $rateFactory
-     * @param \Everon\EvShipping\Model\Rate\CollectionFactory $rateCollectionFactory
+     * @param RateFactory   $rateFactory
+     * @param CollectionFactory $rateCollectionFactory
      * @param Locator                                         $locator
      * @param Reader                                          $reader
      * @param Validator                                       $validator
      * @param LoggerInterface                                 $logger
      */
     public function __construct(
-        \Everon\EvShipping\Model\RateFactory $rateFactory,
-        \Everon\EvShipping\Model\Rate\CollectionFactory $rateCollectionFactory,
+        RateFactory $rateFactory,
+        CollectionFactory $rateCollectionFactory,
         Locator $locator,
         Reader $reader,
         Validator $validator,

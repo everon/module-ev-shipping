@@ -2,6 +2,7 @@
 
 namespace Everon\EvShipping\Model\Rate;
 
+use Everon\EvShipping\Api\Data\FilterCollectionInterface;
 use Everon\EvShipping\Api\Data\FilterInterface;
 use Everon\EvShipping\Api\Data\RateCollectionInterface;
 use Everon\EvShipping\Api\Data\RateInterface;
@@ -21,16 +22,16 @@ class Resolver
     /**
      * @var FilterCollection
      */
-    private $filterCollectionFactory;
+    private $filterCollection;
 
     /**
      * Resolver constructor.
      *
-     * @param FilterCollectionFactory $filterCollectionFactory
+     * @param FilterCollectionInterface $filterCollection
      */
-    public function __construct(FilterCollectionFactory $filterCollectionFactory)
+    public function __construct(FilterCollectionInterface $filterCollection)
     {
-        $this->filterCollectionFactory = $filterCollectionFactory;
+        $this->filterCollection = $filterCollection;
     }
 
     /**
@@ -41,14 +42,8 @@ class Resolver
      */
     public function resolve(RateCollectionInterface $rates, RateRequest $request)
     {
-        /** @var FilterInterface $filter */
-        $filter = null;
-
-        //Get the available filters
-        $collection = $this->filterCollectionFactory->create();
-
         //Filter the rates collection
-        $rates = $collection->filterRates($request, $rates);
+        $rates = $this->filterCollection->filterRates($request, $rates);
 
         return $rates->toArray();
     }
