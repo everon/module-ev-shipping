@@ -64,12 +64,12 @@ class LoaderTest extends IntegrationTestCase
         $this->logger            = $this->mock(LoggerInterface::class);
 
         $this->class = new Loader(
+            $this->rateFactory,
+            $this->collectionFactory,
             $this->locator,
             $this->reader,
             $this->validator,
-            $this->rateFactory,
-            $this->logger,
-            $this->collectionFactory
+            $this->logger
         );
     }
 

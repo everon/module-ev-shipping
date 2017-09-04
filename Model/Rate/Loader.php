@@ -103,6 +103,7 @@ class Loader
         foreach ($rawRates as $rule) {
             $this->validator->validateRate($rule);
             $temp = $this->rateFactory->create($rule);
+            $temp->setData($rule);
             $rates[] = $temp;
         }
 
