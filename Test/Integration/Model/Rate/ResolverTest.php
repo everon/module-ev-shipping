@@ -2,6 +2,13 @@
 
 namespace Everon\EvShipping\Test\Integration\Model\Rate;
 
+use Everon\EvShipping\Model\Filter\CartPrice;
+use Everon\EvShipping\Model\Filter\Country;
+use Everon\EvShipping\Model\Filter\ItemCount;
+use Everon\EvShipping\Model\Filter\Postcode;
+use Everon\EvShipping\Model\Filter\Website;
+use Everon\EvShipping\Model\Filter\Weight;
+use Everon\EvShipping\Model\FilterCollection;
 use Everon\EvShipping\Model\Rate\Loader;
 use Everon\EvShipping\Model\Rate\Resolver;
 use Everon\EvShipping\Test\Integration\IntegrationTestCase;
@@ -20,8 +27,19 @@ class ResolverTest extends IntegrationTestCase
     {
         parent::setUp();
 
+        //Di.xml appears to be ignored, we can not use virtual types in tests it seems
+        //Have verified that the expected values are injected on the front end for my own sanity
+        $filterCollection = $this->_objectManager->create(FilterCollection::class, ['filters' => [
+            new CartPrice(),
+            new Country(),
+            new ItemCount(),
+            new Postcode(),
+            new Website(),
+            new Weight()
+        ]]);
+
         /** @var Resolver resolver */
-        $this->resolver = $this->_objectManager->create(Resolver::class);
+        $this->resolver = $this->_objectManager->create(Resolver::class, ['filterCollection' => $filterCollection]);
 
         /** @var Loader $loader */
         $this->loader = $this->_objectManager->create(Loader::class);
