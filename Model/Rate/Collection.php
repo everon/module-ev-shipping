@@ -16,13 +16,20 @@ class Collection implements RateCollectionInterface
     private $rates;
 
     /**
+     * @var CollectionFactory
+     */
+    private $factory;
+
+    /**
      * RuleCollection constructor.
      *
-     * @param RateInterface[] $items
+     * @param CollectionFactory $factory
+     * @param RateInterface[]   $items
      */
-    public function __construct(array $items)
+    public function __construct(CollectionFactory $factory, array $items = [])
     {
-        $this->rates = $items;
+        $this->rates   = $items;
+        $this->factory = $factory;
     }
 
     /**
@@ -50,7 +57,7 @@ class Collection implements RateCollectionInterface
             }
         }
 
-        return new static($result);
+        return $this->factory->create(['items' => $result]);
     }
 
     /**

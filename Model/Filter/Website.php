@@ -9,7 +9,6 @@ use Magento\Quote\Model\Quote\Address\RateRequest;
 class Website implements FilterInterface
 {
 
-
     /**
      * Checks one or more values to see if they pass certain checks (total weight, item count, postcode etc)
      *
