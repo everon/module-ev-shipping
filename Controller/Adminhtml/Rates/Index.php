@@ -3,19 +3,20 @@
 namespace Everon\EvShipping\Controller\Adminhtml\Rates;
 
 use Magento\Backend\App\Action;
-use Magento\Framework\App\ResponseInterface;
 
 class Index extends Action
 {
-
     /**
-     * Dispatch request
+     * Index action
      *
-     * @return \Magento\Framework\Controller\ResultInterface|ResponseInterface
-     * @throws \Magento\Framework\Exception\NotFoundException
+     * @return void
      */
     public function execute()
     {
-        
+        $this->_view->loadLayout();
+        $this->_setActiveMenu('Magento_Sales::sales_operation');
+
+        $this->_addBreadcrumb(__('EV Shipping'), __('EV Shipping'));
+        $this->_view->renderLayout();
     }
 }
