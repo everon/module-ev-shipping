@@ -2,21 +2,16 @@
 
 namespace Everon\EvShipping\Controller\Adminhtml\Rates;
 
-use Magento\Backend\App\Action;
+use Everon\EvShipping\Controller\Adminhtml\Rates;
 
-class Index extends Action
+class Index extends Rates
 {
-    /**
-     * Index action
-     *
-     * @return void
-     */
+
     public function execute()
     {
-        $this->_view->loadLayout();
-        $this->_setActiveMenu('Magento_Sales::sales_operation');
+        $result = $this->_initAction();
 
-        $this->_addBreadcrumb(__('EV Shipping'), __('EV Shipping'));
-        $this->_view->renderLayout();
+
+        return $result;
     }
 }
