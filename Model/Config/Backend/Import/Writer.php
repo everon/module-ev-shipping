@@ -89,10 +89,11 @@ class Writer
         $targetPath = $this->directoryList->getPath('var') . '/shipping-config.json';
 
         try {
-            $writer = $this->writerFactory->create(['path' => $targetPath]);
+            $writer = $this->writerFactory->create(['path' => $targetPath, 'mode' => 'w']);
             $writer->write($data);
         } catch (FileSystemException $e) {
-            throw new RateImportException('Could not write rates file to: ' . $targetPath);
+            $error = implode('<br />', error_get_last());
+            throw new RateImportException($error);
         }
 
         return $targetPath;

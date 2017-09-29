@@ -4,6 +4,7 @@
     <preference for="Everon\EvShipping\Api\Data\FilterCollectionInterface" type="Everon\EvShipping\Model\FilterCollection"/>
     <preference for="Everon\EvShipping\Api\Data\RateCollectionInterface" type="Everon\EvShipping\Model\Rate\Collection"/>
 
+    <preference for="Magento\Framework\Filesystem\DriverInterface" type="Magento\Framework\Filesystem\Driver\File" />
     <preference for="Magento\Framework\Filesystem\File\ReadInterface" type="Magento\Framework\Filesystem\File\Read" />
     <preference for="Magento\Framework\Filesystem\File\WriteInterface" type="Magento\Framework\Filesystem\File\Write" />
 
