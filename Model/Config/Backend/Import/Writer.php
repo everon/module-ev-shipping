@@ -70,7 +70,7 @@ class Writer
             $fileReader = $this->readerFactory->create(['path' => $filePath]);
         } catch (FileSystemException $e) {
             //Could not find the file
-            throw new RateImportException('Could not find the uploader rates file at: ' . $filePath);
+            throw new RateImportException('Could not find the uploaded rates file at: ' . $filePath);
         }
 
         $data = $fileReader->readAll();

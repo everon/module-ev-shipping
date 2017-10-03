@@ -48,6 +48,12 @@ class Import extends File
      */
     public function beforeSave()
     {
+        $file = $this->getFileData();
+        if (empty($file)) {
+            //TODO: Handle the file delete call from the admin form
+            return $this;
+        }
+
         //Attempt import
         /** @var array $file */
         $file     = $this->getValue();
